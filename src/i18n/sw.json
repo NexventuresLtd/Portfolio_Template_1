@@ -111,19 +111,19 @@
         },
         "team": {
             "title": "Kutana na Uongozi Wetu",
-            "subtitle": "Wataalamu wenye uzoefu wanaongoza kampuni yetu kwa ubora",
+            "subtitle": "Wataalamu wenye uzoefu mkubwa wanaoongoza kampuni yetu kuelekea ubora",
             "members": [
                 {
                     "name": "Eng. Robert",
-                    "role": "Founder & CEO",
-                    "bio": "Civil engineer with 20+ years of experience in construction management and project development.",
+                    "role": "Mwanzilishi & Mkurugenzi Mkuu",
+                    "bio": "Mhandisi wa ujenzi mwenye uzoefu wa zaidi ya miaka 20 katika usimamizi wa ujenzi na maendeleo ya miradi.",
                     "personal": {
                         "age": "45",
-                        "location": "New York, USA",
+                        "location": "New York, Marekani",
                         "interests": [
-                            "Sustainable Architecture",
-                            "Mountain Climbing",
-                            "Vintage Cars"
+                            "Usanifu Endelevu",
+                            "Kupanda Mlima",
+                            "Magari ya Kale"
                         ]
                     },
                     "contact": {
@@ -136,13 +136,13 @@
                         "github": "github.com/robert-builds"
                     },
                     "work": {
-                        "position": "Chief Executive Officer",
-                        "department": "Executive",
+                        "position": "Mkurugenzi Mkuu",
+                        "department": "Uongozi",
                         "skills": [
-                            "Project Management",
-                            "Structural Engineering",
-                            "Team Leadership",
-                            "Budgeting"
+                            "Usimamizi wa Mradi",
+                            "Uhandisi wa Miundo",
+                            "Uongozi wa Timu",
+                            "Upangaji wa Bajeti"
                         ]
                     }
                 }

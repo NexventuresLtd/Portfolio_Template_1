@@ -115,15 +115,15 @@
             "members": [
                 {
                     "name": "Eng. Robert",
-                    "role": "Founder & CEO",
-                    "bio": "Civil engineer with 20+ years of experience in construction management and project development.",
+                    "role": "Fondateur & PDG",
+                    "bio": "Ingénieur civil avec plus de 20 ans d'expérience en gestion de construction et développement de projets.",
                     "personal": {
                         "age": "45",
-                        "location": "New York, USA",
+                        "location": "New York, États-Unis",
                         "interests": [
-                            "Sustainable Architecture",
-                            "Mountain Climbing",
-                            "Vintage Cars"
+                            "Architecture durable",
+                            "Escalade en montagne",
+                            "Voitures anciennes"
                         ]
                     },
                     "contact": {
@@ -136,13 +136,13 @@
                         "github": "github.com/robert-builds"
                     },
                     "work": {
-                        "position": "Chief Executive Officer",
-                        "department": "Executive",
+                        "position": "Président Directeur Général",
+                        "department": "Direction générale",
                         "skills": [
-                            "Project Management",
-                            "Structural Engineering",
-                            "Team Leadership",
-                            "Budgeting"
+                            "Gestion de projet",
+                            "Génie structurel",
+                            "Leadership d'équipe",
+                            "Budgétisation"
                         ]
                     }
                 }
