@@ -1,47 +1,77 @@
-import { createContext, useState, useContext, type ReactNode } from "react";
+import { createContext, useState, useContext, type ReactNode, useMemo } from "react";
 import en from "../i18n/en.json";
 import fr from "../i18n/fr.json";
-import kin from "../i18n/kn.json";
+import kn from "../i18n/kn.json";
 import sw from "../i18n/sw.json";
 
-type Languages = "en" | "fr" | "kin" | "sw";
-type Translations = typeof en;
+// Define supported languages (note: "kin" should match your file naming)
+type LanguageCode = "en" | "fr" | "kn" | "sw";
 
-const translations: Record<Languages, Translations> = { en, fr, kin, sw };
+// Infer translation structure from your JSON files
+// type TranslationKeys = keyof typeof en;
+type NestedTranslation<T> = T extends object ? { [K in keyof T]: NestedTranslation<T[K]> } : string;
+type TranslationStructure = NestedTranslation<typeof en>;
 
-interface LanguageContextType {
-  lang: Languages;
-  setLang: (lang: Languages) => void;
+const translations: Record<LanguageCode, TranslationStructure> = { 
+  en, 
+  fr, 
+  kn, 
+  sw 
+};
+
+interface LanguageContextValue {
+  lang: LanguageCode;
+  setLang: (lang: LanguageCode) => void;
   t: (key: string) => string;
 }
 
-const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
+const LanguageContext = createContext<LanguageContextValue | undefined>(undefined);
 
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
-  const [lang, setLang] = useState<Languages>(
-    (localStorage.getItem("lang") as Languages) || "en"
-  );
+  const [lang, setLang] = useState<LanguageCode>(() => {
+    const savedLang = localStorage.getItem("lang") as LanguageCode | null;
+    return savedLang && translations[savedLang] ? savedLang : "en";
+  });
 
   const t = (key: string) => {
-    return key
-      .split(".")
-      .reduce((o: any, k) => (o && o[k] !== undefined ? o[k] : ""), translations[lang]) as string;
+    try {
+      return key.split('.').reduce((obj, part) => {
+        if (obj && typeof obj === 'object' && part in obj) {
+          return (obj as any)[part];
+        }
+        console.warn(`Translation key not found: ${key}`);
+        return key; // Return the key as fallback
+      }, translations[lang] as any) as string;
+    } catch (error) {
+      console.error(`Translation error for key ${key}:`, error);
+      return key;
+    }
   };
 
-  const changeLang = (newLang: Languages) => {
-    setLang(newLang);
-    localStorage.setItem("lang", newLang);
-  };
+  const value = useMemo(() => ({
+    lang,
+    setLang: (newLang: LanguageCode) => {
+      if (translations[newLang]) {
+        setLang(newLang);
+        localStorage.setItem("lang", newLang);
+      } else {
+        console.warn(`Attempted to set unsupported language: ${newLang}`);
+      }
+    },
+    t
+  }), [lang]);
 
   return (
-    <LanguageContext.Provider value={{ lang, setLang: changeLang, t }}>
+    <LanguageContext.Provider value={value}>
       {children}
     </LanguageContext.Provider>
   );
 };
 
-export const useLanguage = () => {
+export const useLanguage = (): LanguageContextValue => {
   const context = useContext(LanguageContext);
-  if (!context) throw new Error("useLanguage must be used within LanguageProvider");
+  if (!context) {
+    throw new Error("useLanguage must be used within a LanguageProvider");
+  }
   return context;
 };

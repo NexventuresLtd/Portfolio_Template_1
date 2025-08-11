@@ -63,7 +63,7 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme, isSystemTheme }}>
-      {children}
+      {children}    
     </ThemeContext.Provider>
   );
 };

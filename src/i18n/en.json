@@ -1,6 +1,40 @@
 {
-  "header": {
-    "title": "Welcome to My Portfolio",
-    "subtitle": "Showcasing my best work"
-  }
+    "Project_information": [
+        {
+            "name": "Robert Construction",
+            "description": "Robert Construction is a trusted engineering and construction company led by Eng. Robert, a highly skilled and experienced civil engineer with a proven record of delivering innovative, sustainable, and high-quality projects. We specialize in providing end-to-end construction and engineering solutions for residential, commercial, and industrial developments. From concept design to final handover, our team ensures precision, quality, and efficiency in every project we undertake. Our commitment is built on integrity, safety, and excellence, ensuring every client gets reliable solutions that exceed expectations."
+        }
+    ],
+    "header": {
+        "title": "Welcome to My Portfolio",
+        "subtitle": "Showcasing my best work"
+    },
+    "navigation_links": [
+        {
+            "name": "Home",
+            "icon": "<HomeIcon/>"
+        },
+        {
+            "name": "Services",
+            "icon": "<ServicesIcon/>"
+        },
+        {
+            "name": "Projects",
+            "icon": "<FolderIcon/>"
+        },
+        {
+            "name": "Testimonials",
+            "icon": "<QuoteIcon/>"
+        },
+        {
+            "name": "Contact Us",
+            "icon": "<ContactIcon/>"
+        }
+    ],
+    "theme": {
+        "toggle_button": "Toggle Theme"
+    },
+    "language": {
+        "selector_label": "Language"
+    }
 }
