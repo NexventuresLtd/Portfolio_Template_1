@@ -14,8 +14,8 @@ export const createNavItems = (t: (key: string) => string): NavItem[] => [
     ],
   },
   { name: t("navbar.menu.projects"), href: "#projects" },
-  { name: t("navbar.menu.about"), href: "#about" },
-  { name: t("navbar.menu.testimonials"), href: "#testimonials" },
+  { name: t("navbar.menu.about"), href: "/#about" },
+  { name: t("navbar.menu.testimonials"), href: "/services/#testimonials" },
   { name: t("navbar.menu.contact"), href: "#contact" },
 ];
 

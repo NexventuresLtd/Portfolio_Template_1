@@ -195,7 +195,7 @@ const TeamCard = ({ name, role, bio, image, theme, personal, contact, social, ex
         <>
             {/* Compact Grid Card */}
             <motion.div
-                className={`${bgClass} rounded-xl p-4 shadow-sm transition-all duration-300 cursor-pointer ${borderColor} border`}
+                className={`${bgClass} rounded-xl p-4  transition-all duration-300 cursor-pointer  `}
                 whileHover={{ y: -4, scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => setIsOpen(true)}
@@ -252,7 +252,7 @@ const TeamCard = ({ name, role, bio, image, theme, personal, contact, social, ex
                         onClick={() => setIsOpen(false)}
                     >
                         <motion.div
-                            className={`${theme === 'dark' ? 'bg-glass-dark' : 'bg-glass-light'} rounded-2xl overflow-hidden w-full max-w-3xl max-h-[90vh] flex flex-col shadow-2xl ${borderColor} border`}
+                            className={`${theme === 'dark' ? 'bg-background' : 'bg-background'} rounded-2xl overflow-hidden w-full max-w-3xl max-h-[90vh] flex flex-col shadow-2xl ${borderColor} border`}
                             initial={{ scale: 0.95, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
                             exit={{ scale: 0.95, opacity: 0 }}
