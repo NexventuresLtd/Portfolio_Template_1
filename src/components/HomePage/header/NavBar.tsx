@@ -102,12 +102,12 @@ const Navbar: React.FC = () => {
   return (
     <nav className={`fixed w-full z-50 transition-all duration-300 ${
       isScrolled 
-        ? `${theme === 'dark' ? 'bg-surface' : 'bg-primary'} backdrop-blur-md shadow-lg border-b ${theme === 'dark' ? 'border-color' : 'border-gray-200'}`
+        ? `${theme === 'dark' ? 'bg-surface' : 'bg-primary'} backdrop-blur-md shadow-lg }`
         : 'bg-transparent'
     }`}>
       {/* Top bar with contact info */}
-      <div className={`${theme === 'dark' ? 'bg-background' : 'bg-primary'} text-white py-2 transition-all duration-300 ${
-        isScrolled ? 'h-0 overflow-hidden opacity-0' : 'h-auto opacity-100'
+      <div className={`${theme === 'dark' ? 'bg-background' : 'bg-primary'} text-white  transition-all duration-300 ${
+        isScrolled ? 'h-0 overflow-hidden opacity-0' : 'h-auto opacity-100 py-2'
       }`}>
         <div className="w-full md:max-w-11/12 mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row justify-between items-center text-sm space-y-2 sm:space-y-0">

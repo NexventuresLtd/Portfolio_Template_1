@@ -18,7 +18,7 @@
 
 /* === Dark Mode === */
 .dark .bg-primary          { background-color: #FAFAFA; }   /* Light (inverted) */
-.dark .bg-secondary        { background-color: #F9A825; }
+.dark .bg-secondary        { background-color: #e44e13; }
 .dark .bg-accent           { background-color: #FF5722; }
 .dark .bg-accent-hover     { background-color: #E64A19; }
 .dark .bg-background       { background-color: #1B1B1B; }   /* Dark Background */
@@ -29,7 +29,7 @@
 .dark .text-white          { color: #FFFFFF; }
 .dark .text-success        { color: #81C784; }              /* Lighter Green */
 .dark .text-error          { color: #EF5350; }
-
+.dark .text-accent          { color: #FF5722; } 
 .dark .border-color        { border-color: #444444; }
 
 .hover\:bg-primary:hover   { background-color: #2C2C2C; }

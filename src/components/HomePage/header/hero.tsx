@@ -24,23 +24,28 @@ const Hero: React.FC = () => {
             {/* Background with overlay */}
             <div className="absolute inset-0 z-0">
                 <div className={`absolute inset-0 z-10 ${theme === 'dark'
-                        ? 'dark:bg-black/60'
-                        : 'bg-black/80'
+                    ? 'dark:bg-black/60'
+                    : 'bg-black/80'
                     }`}></div>
-                <div
-                    className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-                    style={{
-                        backgroundImage: `url('https://www.azuremagazine.com/wp-content/uploads/2024/01/2024-projects.gif')`
-                    }}
-                ></div>
+                <div className="absolute inset-0 overflow-hidden">
+                    <video
+                        src="/src/assets/3dVideo/3dEffect.mp4"
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        className="w-full h-full object-cover"
+                    />
+                </div>
+
                 {/* Construction-themed background pattern */}
                 <div className="absolute inset-0 opacity-30">
                     <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
                         <defs>
                             <pattern id="construction" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-                                <rect width="20" height="20" fill="none" stroke={theme === 'dark' ? '#F9A825' : '#FF5722'} strokeWidth="0.5" />
-                                <rect x="2" y="2" width="6" height="6" fill={theme === 'dark' ? '#F9A825' : '#FF5722'} />
-                                <rect x="12" y="12" width="6" height="6" fill={theme === 'dark' ? '#F9A825' : '#FF5722'} />
+                                <rect width="20" height="20" fill="none" stroke={theme === 'dark' ? 'lightgray' : 'lightgray'} strokeWidth="0.5" />
+                                <rect x="2" y="2" width="6" height="6" fill={theme === 'dark' ? 'lightgray' : 'lightgray'} />
+                                <rect x="12" y="12" width="6" height="6" fill={theme === 'dark' ? 'lightgray' : 'lightgray'} />
                             </pattern>
                         </defs>
                         <rect width="100%" height="100%" fill="url(#construction)" />
@@ -64,7 +69,7 @@ const Hero: React.FC = () => {
                     </h1>
 
                     {/* Subtitle */}
-                    <p 
+                    <p
                         className="text-lg md:text-xl lg:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed px-4"
                         dangerouslySetInnerHTML={{ __html: t('hero.subtitle') }}
                     />
