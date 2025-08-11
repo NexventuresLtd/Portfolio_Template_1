@@ -24,12 +24,12 @@ const Hero: React.FC = () => {
             {/* Background with overlay */}
             <div className="absolute inset-0 z-0">
                 <div className={`absolute inset-0 z-10 ${theme === 'dark'
-                    ? 'dark:bg-black/80'
-                    : 'bg-black/60'
+                    ? 'dark:bg-black/70'
+                    : 'bg-black/40'
                     }`}></div>
                 <div className="absolute inset-0 overflow-hidden">
                     <video
-                        src="/src/assets/3dVideo/3dEffect.mp4"
+                        src="/3dVideo/3dEffect.mp4"
                         autoPlay
                         loop
                         muted
