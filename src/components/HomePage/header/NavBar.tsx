@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import {  Menu, X } from "lucide-react";
 import { useTheme } from "../../../contexts/ThemeContext";
 import { useLanguage } from "../../../contexts/LanguageContext";
 import Logo from "./Logo";
@@ -11,17 +11,17 @@ import type { NavItem } from "../../../types/HeaderTypes";
 
 
 const Navbar: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-  const [showLanguageDropdown, setShowLanguageDropdown] = useState(false);
-  const [windowWidth, setWindowWidth] = useState(
-    typeof window !== "undefined" ? window.innerWidth : 1024
-  );
+    const [isOpen, setIsOpen] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(false);
+    const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+    const [showLanguageDropdown, setShowLanguageDropdown] = useState(false);
+    const [windowWidth, setWindowWidth] = useState(
+        typeof window !== "undefined" ? window.innerWidth : 1024
+    );
 
-  // Theme and Language hooks
-  const { theme } = useTheme();
-  const { t } = useLanguage();
+    // Theme and Language hooks
+    const { theme } = useTheme();
+    const { t } = useLanguage();
 
     const navItems: NavItem[] = [
         { name: t('navbar.menu.home'), href: '/' },
@@ -41,200 +41,128 @@ const Navbar: React.FC = () => {
         { name: t('navbar.menu.testimonials'), href: '#testimonials' },
         { name: t('navbar.menu.contact'), href: '#contact' }
     ];
-  const navItems: NavItem[] = [
-    { name: t("navbar.menu.home"), href: "#home" },
-    {
-      name: t("navbar.menu.services"),
-      href: "#services",
-      hasDropdown: true,
-      dropdownItems: [
-        { name: t("navbar.menu.residential"), href: "#residential" },
-        { name: t("navbar.menu.commercial"), href: "#commercial" },
-        { name: t("navbar.menu.renovations"), href: "#renovations" },
-        { name: t("navbar.menu.management"), href: "#management" },
-      ],
-    },
-    { name: t("navbar.menu.projects"), href: "#projects" },
-    { name: t("navbar.menu.about"), href: "#about" },
-    { name: t("navbar.menu.testimonials"), href: "#testimonials" },
-    { name: t("navbar.menu.contact"), href: "#contact" },
-  ];
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+    useEffect(() => {
+        const handleScroll = () => {
+            setIsScrolled(window.scrollY > 50);
+        };
+
+        const handleResize = () => {
+            setWindowWidth(window.innerWidth);
+            // Close dropdowns if screen size changes to desktop
+            if (window.innerWidth >= 768) {
+                setIsOpen(false);
+                setActiveDropdown(null);
+            }
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        window.addEventListener("resize", handleResize);
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+            window.removeEventListener("resize", handleResize);
+        };
+    }, []);
+
+    // Close dropdown when clicking outside
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (
+                activeDropdown &&
+                !(event.target as Element).closest(".dropdown-container")
+            ) {
+                setActiveDropdown(null);
+            }
+            if (
+                showLanguageDropdown &&
+                !(event.target as Element).closest(".language-selector")
+            ) {
+                setShowLanguageDropdown(false);
+            }
+        };
+
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, [activeDropdown, showLanguageDropdown]);
+
+    const handleDropdownToggle = (itemName: string | null) => {
+        setActiveDropdown(itemName);
     };
 
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-      // Close dropdowns if screen size changes to desktop
-      if (window.innerWidth >= 768) {
+    const toggleLanguageDropdown = () => {
+        setShowLanguageDropdown(!showLanguageDropdown);
+    };
+
+    const closeMobileMenu = () => {
         setIsOpen(false);
-        setActiveDropdown(null);
-      }
     };
 
-    window.addEventListener("scroll", handleScroll);
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
-  // Close dropdown when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        activeDropdown &&
-        !(event.target as Element).closest(".dropdown-container")
-      ) {
-        setActiveDropdown(null);
-      }
-      if (
-        showLanguageDropdown &&
-        !(event.target as Element).closest(".language-selector")
-      ) {
-        setShowLanguageDropdown(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [activeDropdown, showLanguageDropdown]);
-
-  const handleDropdownToggle = (itemName: string | null) => {
-    setActiveDropdown(itemName);
-  };
-
-  const toggleLanguageDropdown = () => {
-    setShowLanguageDropdown(!showLanguageDropdown);
-  };
-
-  const closeMobileMenu = () => {
-    setIsOpen(false);
-  };
-
-  return (
-    <nav
-      className={`fixed w-full z-50 transition-all duration-300 ${
-        isScrolled
-          ? `${
-              theme === "dark" ? "bg-surface" : "bg-primary"
-            } backdrop-blur-md shadow-lg }`
-          : "bg-transparent"
-      }`}
-    >
-      {/* Main navigation */}
-      <div className="w-full md:max-w-11/12 mx-auto px-0">
-        <div className="flex justify-between items-center h-16">
-          {/* Logo */}
-          <Logo isScrolled={isScrolled} />
+    return (
+        <nav
+            className={`fixed w-full z-50 transition-all duration-300 ${isScrolled
+                ? `${theme === "dark" ? "bg-surface" : "bg-primary"
+                } backdrop-blur-md shadow-lg }`
+                : "bg-transparent"
+                }`}
+        >
+            {/* Main navigation */}
+            <div className="w-full md:max-w-11/12 mx-auto px-0">
+                <div className="flex justify-between items-center h-16">
+                    {/* Logo */}
+                    <Logo isScrolled={isScrolled} />
 
                     {/* Desktop navigation */}
-                    <div className="hidden lg:block">
-                        <div className="flex items-baseline lg:space-x-0">
-                            {navItems.map((item) => (
-                                <div
-                                    key={item.name}
-                                    className="relative dropdown-container"
-                                    onMouseEnter={() => {
-                                        if (windowWidth > 768 && item.hasDropdown) {
-                                            setActiveDropdown(item.name);
-                                        }
-                                    }}
-                                >
-                                    <a
-                                        href={item.href}
-                                        className={`px-3 py-2 rounded-sm text-sm font-medium transition-colors duration-200 flex items-center space-x-1 ${isScrolled
-                                                ? (theme === 'dark' ? 'text-primary hover:bg-primary' : 'text-white hover:bg-accent')
-                                                : 'text-white hover:bg-primary'
-                                            }`}
-                                        onClick={() => windowWidth < 768 && item.hasDropdown && setActiveDropdown(
-                                            activeDropdown === item.name ? null : item.name
-                                        )}
-                                    >
-                                        <span>{item.name}</span>
-                                        {item.hasDropdown && (
-                                            <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${activeDropdown === item.name ? 'rotate-180' : ''
-                                                }`} />
-                                        )}
-                                    </a>
+                    <NavLinks
+                        navItems={navItems}
+                        isScrolled={isScrolled}
+                        activeDropdown={activeDropdown}
+                        windowWidth={windowWidth}
+                        onDropdownToggle={handleDropdownToggle}
+                    />
 
-                                    {/* Dropdown menu */}
-                                    {item.hasDropdown && activeDropdown === item.name && (
-                                        <div className={`absolute top-full left-0 w-56 ${theme === 'dark' ? 'bg-surface' : 'bg-white'} shadow-xl rounded-lg ${theme === 'dark' ? 'border-color' : 'border-gray-200'} border py-2 mt-1`}>
-                                            {item.dropdownItems?.map((dropdownItem) => (
-                                                <a
-                                                    key={dropdownItem.name}
-                                                    href={dropdownItem.href}
-                                                    className={`block px-4 py-2 text-sm transition-colors duration-200 ${theme === 'dark'
-                                                            ? 'text-primary hover:bg-secondary hover:text-secondary'
-                                                            : 'text-primary hover:bg-accent hover:text-accent'
-                                                        }`}
-                                                >
-                                                    {dropdownItem.name}
-                                                </a>
-                                            ))}
-                                        </div>
-                                    )}
-                                </div>
-                            ))}
-                        </div>
+                    {/* Right side controls */}
+                    <div className="flex items-center ">
+                        {/* Theme Toggle */}
+                        <ThemeToggle isScrolled={isScrolled} />
+
+                        {/* Language Selector - Desktop */}
+                        <LanguageSelector
+                            isScrolled={isScrolled}
+                            showLanguageDropdown={showLanguageDropdown}
+                            onToggleDropdown={toggleLanguageDropdown}
+                        />
+
+                        {/* Mobile menu button */}
+                        <button
+                            onClick={() => setIsOpen(!isOpen)}
+                            className={`lg:hidden p-2 rounded-md ${isScrolled
+                                ? theme === "dark"
+                                    ? "text-primary"
+                                    : "text-white"
+                                : "text-white"
+                                }`}
+                        >
+                            {isOpen ? (
+                                <X className="h-6 w-6" />
+                            ) : (
+                                <Menu className="h-6 w-6" />
+                            )}
+                        </button>
                     </div>
-          {/* Desktop navigation */}
-          <NavLinks
-            navItems={navItems}
-            isScrolled={isScrolled}
-            activeDropdown={activeDropdown}
-            windowWidth={windowWidth}
-            onDropdownToggle={handleDropdownToggle}
-          />
+                </div>
+            </div>
 
-          {/* Right side controls */}
-          <div className="flex items-center ">
-            {/* Theme Toggle */}
-            <ThemeToggle isScrolled={isScrolled} />
-
-            {/* Language Selector - Desktop */}
-            <LanguageSelector
-              isScrolled={isScrolled}
-              showLanguageDropdown={showLanguageDropdown}
-              onToggleDropdown={toggleLanguageDropdown}
+            {/* Mobile menu */}
+            <MobileMenu
+                isOpen={isOpen}
+                navItems={navItems}
+                activeDropdown={activeDropdown}
+                onDropdownToggle={handleDropdownToggle}
+                onClose={closeMobileMenu}
             />
-
-            {/* Mobile menu button */}
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className={`lg:hidden p-2 rounded-md ${
-                isScrolled
-                  ? theme === "dark"
-                    ? "text-primary"
-                    : "text-white"
-                  : "text-white"
-              }`}
-            >
-              {isOpen ? (
-                <X className="h-6 w-6" />
-              ) : (
-                <Menu className="h-6 w-6" />
-              )}
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* Mobile menu */}
-      <MobileMenu
-        isOpen={isOpen}
-        navItems={navItems}
-        activeDropdown={activeDropdown}
-        onDropdownToggle={handleDropdownToggle}
-        onClose={closeMobileMenu}
-      />
-    </nav>
-  );
+        </nav>
+    );
 };
 
 export default Navbar;
