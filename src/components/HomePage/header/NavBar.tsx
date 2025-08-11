@@ -5,7 +5,6 @@ import {
   Phone, 
   Mail, 
   MapPin, 
-  ArrowRight, 
   Building2, 
   ChevronDown,
   Sun,
