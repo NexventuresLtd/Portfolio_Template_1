@@ -1,98 +1,14 @@
-import {  useEffect, useRef } from 'react';
 import {
     Building2, Users, Award, Shield, Target, Heart, Star, TrendingUp, Clock, Wrench,
     Home, Factory, Store, ArrowRight
 } from 'lucide-react';
-import { motion, useAnimation } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import * as THREE from 'three';
+import { motion } from 'framer-motion';
 import { useTheme } from '../../../contexts/ThemeContext';
 import SectionTitle from '../ResharedComps/SectionTitle';
 import StatCard from '../ResharedComps/StatCard';
 import ValueCard from '../ResharedComps/ValueCard1';
 import ServiceCard from '../ResharedComps/ServiceCard1';
 import TeamCard from '../ResharedComps/TeamCard';
-
-// 3D Scene Component
-const ThreeScene = ({ theme }: { theme: string }) => {
-    const mountRef = useRef<HTMLDivElement>(null);
-    const sceneRef = useRef<THREE.Scene | null>(null);
-    const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
-
-    useEffect(() => {
-        if (!mountRef.current) return;
-
-        // Scene setup
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, mountRef.current.clientWidth / mountRef.current.clientHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-
-        renderer.setSize(mountRef.current.clientWidth, mountRef.current.clientHeight);
-        renderer.setClearColor(0x000000, 0);
-        mountRef.current.appendChild(renderer.domElement);
-
-        // Create building-like structures
-        const buildings: THREE.Mesh[] = [];
-        for (let i = 0; i < 5; i++) {
-            const geometry = new THREE.BoxGeometry(
-                0.3 + Math.random() * 0.2,
-                0.8 + Math.random() * 0.4,
-                0.3 + Math.random() * 0.2
-            );
-            const material = new THREE.MeshBasicMaterial({
-                color: theme === 'dark' ? 0xF9A825 : 0xFF5722, // Using your accent colors
-                wireframe: true
-            });
-            const building = new THREE.Mesh(geometry, material);
-
-            building.position.x = (i - 2) * 0.8;
-            building.position.y = building.geometry.parameters.height / 2;
-
-            scene.add(building);
-            buildings.push(building);
-        }
-
-        camera.position.z = 3;
-        camera.position.y = 0.5;
-
-        // Animation loop
-        const animate = () => {
-            requestAnimationFrame(animate);
-
-            buildings.forEach((building, index) => {
-                building.rotation.y += 0.005 + index * 0.001;
-            });
-
-            renderer.render(scene, camera);
-        };
-
-        sceneRef.current = scene;
-        rendererRef.current = renderer;
-        animate();
-
-        // Handle resize
-        const handleResize = () => {
-            if (!mountRef.current) return;
-            const width = mountRef.current.clientWidth;
-            const height = mountRef.current.clientHeight;
-
-            camera.aspect = width / height;
-            camera.updateProjectionMatrix();
-            renderer.setSize(width, height);
-        };
-
-        window.addEventListener('resize', handleResize);
-
-        return () => {
-            window.removeEventListener('resize', handleResize);
-            if (mountRef.current && renderer.domElement) {
-                mountRef.current.removeChild(renderer.domElement);
-            }
-        };
-    }, [theme]);
-
-    return <div ref={mountRef} className="w-full h-64" />;
-};
 
 
 
@@ -103,34 +19,75 @@ const AboutUs = () => {
     const { theme } = useTheme();
 
     const stats = [
-        { icon: Building2, value: '500+', label: 'Projects Completed' },
-        { icon: Clock, value: '15+', label: 'Years Experience' },
-        { icon: Users, value: '50+', label: 'Expert Team Members' },
-        { icon: Star, value: '98%', label: 'Client Satisfaction' }
+        {
+            icon: Building2,
+            value: '500+',
+            label: 'Projects Completed',
+            colorLight: 'bg-amber-100 text-amber-800',
+            colorDark: 'bg-amber-700 text-amber-100',
+        },
+        {
+            icon: Clock,
+            value: '15+',
+            label: 'Years Experience',
+            colorLight: 'bg-zinc-100 text-zinc-800',
+            colorDark: 'bg-zinc-700 text-zinc-100',
+        },
+        {
+            icon: Users,
+            value: '50+',
+            label: 'Expert Team Members',
+            colorLight: 'bg-slate-100 text-slate-800',
+            colorDark: 'bg-slate-700 text-slate-100',
+        },
+        {
+            icon: Star,
+            value: '98%',
+            label: 'Client Satisfaction',
+            colorLight: 'bg-gray-50 text-gray-700',
+            colorDark: 'bg-gray-600 text-gray-50',
+        },
     ];
+
+
+
 
     const values = [
         {
             icon: Shield,
             title: 'Safety First',
-            description: 'We prioritize the safety of our workers, clients, and communities in every project, implementing rigorous safety protocols and standards.'
+            description:
+                'We prioritize the safety of our workers, clients, and communities in every project, implementing rigorous safety protocols and standards.',
+            colorLight: 'bg-stone-100 text-stone-800',
+            colorDark: 'bg-stone-700 text-stone-100',
         },
         {
             icon: Award,
             title: 'Excellence',
-            description: 'We deliver exceptional quality through meticulous attention to detail, innovative solutions, and continuous improvement in our processes.'
+            description:
+                'We deliver exceptional quality through meticulous attention to detail, innovative solutions, and continuous improvement in our processes.',
+            colorLight: 'bg-zinc-100 text-zinc-800',
+            colorDark: 'bg-zinc-700 text-zinc-100',
         },
         {
             icon: Heart,
             title: 'Integrity',
-            description: 'We build lasting relationships through honest communication, transparent practices, and unwavering commitment to our promises.'
+            description:
+                'We build lasting relationships through honest communication, transparent practices, and unwavering commitment to our promises.',
+            colorLight: 'bg-slate-100 text-slate-800',
+            colorDark: 'bg-slate-700 text-slate-100',
         },
         {
             icon: TrendingUp,
             title: 'Innovation',
-            description: 'We embrace cutting-edge technology and modern construction methods to deliver efficient, sustainable, and future-ready solutions.'
-        }
+            description:
+                'We embrace cutting-edge technology and modern construction methods to deliver efficient, sustainable, and future-ready solutions.',
+            colorLight: 'bg-amber-100 text-amber-800',
+            colorDark: 'bg-amber-700 text-amber-100',
+        },
     ];
+
+
 
     const services = [
         {
@@ -225,8 +182,8 @@ const AboutUs = () => {
 
                             <motion.button
                                 className={`inline-flex items-center px-6 py-3 font-medium transition-colors duration-200 ${theme === 'dark'
-                                        ? 'text-accent hover:bg-accent hover:text-primary'
-                                        : 'text-accent hover:bg-accent hover:text-primary'
+                                    ? 'text-accent hover:bg-accent hover:text-primary'
+                                    : 'text-accent hover:bg-accent hover:text-primary'
                                     }`}
                                 whileHover={{ scale: 1.02 }}
                                 whileTap={{ scale: 0.98 }}
@@ -244,7 +201,7 @@ const AboutUs = () => {
                         >
                             <div className={`p-4 ${theme === 'dark' ? 'bg-surface' : 'bg-surface'
                                 }`}>
-                                <ThreeScene theme={theme} />
+                                <img src="https://www.newtimes.co.rw/uploads/imported_images/files/main/articles/2020/06/12/workers-at-a-construction-site.jpg" alt="" />
                             </div>
                         </motion.div>
                     </div>
@@ -258,6 +215,8 @@ const AboutUs = () => {
                                 value={stat.value}
                                 label={stat.label}
                                 theme={theme}
+                                colorLight={stat.colorLight}
+                                colorDark={stat.colorDark}
                             />
                         ))}
                     </div>
@@ -336,6 +295,8 @@ const AboutUs = () => {
                                 icon={value.icon}
                                 title={value.title}
                                 description={value.description}
+                                colorDark={value.colorDark}
+                                colorLight={value.colorLight}
                                 theme={theme}
                             />
                         ))}
@@ -385,8 +346,8 @@ const AboutUs = () => {
                         </p>
                         <motion.button
                             className={`inline-flex items-center px-6 py-3 font-medium transition-colors duration-200 ${theme === 'dark'
-                                    ? 'text-accent hover:bg-accent hover:text-primary'
-                                    : 'text-accent hover:bg-accent hover:text-primary'
+                                ? 'text-accent hover:bg-accent hover:text-primary'
+                                : 'text-accent hover:bg-accent hover:text-primary'
                                 }`}
                             whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}

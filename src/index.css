@@ -38,3 +38,19 @@
 .hover\:text-primary:hover   { color: #1B1B1B; }
 .hover\:text-secondary:hover { color: #666666; }
 .hover\:text-white:hover     { color: #FFFFFF; }
+
+/* Light glass background */
+.bg-glass-light {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Dark glass background */
+.bg-glass-dark {
+  background: rgba(44, 44, 44, 0.35);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}

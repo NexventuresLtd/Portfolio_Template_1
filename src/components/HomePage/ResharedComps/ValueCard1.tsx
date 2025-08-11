@@ -3,11 +3,13 @@ import { useInView } from 'react-intersection-observer'; // ✅ CORRECT
 
 import { useEffect } from "react";
 // Value Card
-const ValueCard = ({ icon: Icon, title, description, theme }: {
+const ValueCard = ({ icon: Icon, title, description, theme,colorDark,colorLight }: {
     icon: React.ComponentType<{ className?: string }>;
     title: string;
     description: string;
     theme: string;
+    colorLight?: string;
+    colorDark?: string;
 }) => {
     const controls = useAnimation();
     const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true });
@@ -21,13 +23,13 @@ const ValueCard = ({ icon: Icon, title, description, theme }: {
             });
         }
     }, [controls, inView]);
-
+    const activeColor = theme === 'dark' ? colorDark : colorLight;
     return (
         <motion.div
             ref={ref}
             initial={{ opacity: 0, y: 30 }}
             animate={controls}
-            className={`group p-5 transition-all duration-300 ${theme === 'dark' ? 'bg-surface' : 'bg-surface'
+            className={`group p-5 transition-all duration-300 rounded-2xl ${!activeColor ? (theme === "dark" ? "bg-glass-dark" : "bg-glass-light") : activeColor
                 }`}
             whileHover={{ scale: 1.02 }}
         >

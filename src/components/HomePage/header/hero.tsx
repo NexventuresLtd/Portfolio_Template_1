@@ -24,8 +24,8 @@ const Hero: React.FC = () => {
             {/* Background with overlay */}
             <div className="absolute inset-0 z-0">
                 <div className={`absolute inset-0 z-10 ${theme === 'dark'
-                    ? 'dark:bg-black/60'
-                    : 'bg-black/80'
+                    ? 'dark:bg-black/80'
+                    : 'bg-black/60'
                     }`}></div>
                 <div className="absolute inset-0 overflow-hidden">
                     <video
