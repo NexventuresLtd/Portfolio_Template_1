@@ -71,6 +71,8 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
         getTranslatedArray
     }), [lang]);
 
+    
+
     return (
         <LanguageContext.Provider value={value}>
             {children}

@@ -40,11 +40,11 @@ const Navbar: React.FC = () => {
     ];
 
     const navItems: NavItem[] = [
-        { name: t('navbar.menu.home'), href: '#home' },
+        { name: t('navbar.menu.home'), href: '/' },
         {
             name: t('navbar.menu.services'),
-            href: '#services',
-            hasDropdown: true,
+            href: '/services',
+            hasDropdown: false,
             dropdownItems: [
                 { name: t('navbar.menu.residential'), href: '#residential' },
                 { name: t('navbar.menu.commercial'), href: '#commercial' },
@@ -130,8 +130,8 @@ const Navbar: React.FC = () => {
                                     <a
                                         href={item.href}
                                         className={`px-3 py-2 rounded-sm text-sm font-medium transition-colors duration-200 flex items-center space-x-1 ${isScrolled
-                                                ? (theme === 'dark' ? 'text-primary hover:bg-secondary' : 'text-white hover:bg-accent')
-                                                : 'text-white hover:bg-secondary'
+                                                ? (theme === 'dark' ? 'text-primary hover:bg-primary' : 'text-white hover:bg-accent')
+                                                : 'text-white hover:bg-primary'
                                             }`}
                                         onClick={() => windowWidth < 768 && item.hasDropdown && setActiveDropdown(
                                             activeDropdown === item.name ? null : item.name

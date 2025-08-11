@@ -101,9 +101,8 @@ const AboutUs = () => {
     const teamMembers = getTranslatedArray('about.team.members').map((member: any, index: number) => ({
         ...member,
         image: [
-            'https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=687&q=80',
-            'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=687&q=80',
-            'https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=687&q=80'
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-w3sybuKJddCVoh9sblHb1h7PuBgfUl8_rw&s',
+            // Add more image URLs as needed
         ][index]
     }));
 
@@ -311,7 +310,7 @@ const AboutUs = () => {
                         theme={theme}
                     />
 
-                    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 items-start lg:min-h-92 lg:overflow-hidden">
+                    <div className="grid sm:grid-cols-1 lg:grid-cols-1 gap-6 items-start lg:min-h-92 lg:overflow-hidden">
                         {teamMembers.map((member: any, index: number) => (
                             <TeamCard
                                 key={index}
@@ -320,6 +319,10 @@ const AboutUs = () => {
                                 bio={member.bio}
                                 image={member.image}
                                 theme={theme}
+                                personal={member.personal}
+                                contact={member.contact}
+                                social={member.social}
+                                experience={member.experience}
                             />
                         ))}
                     </div>

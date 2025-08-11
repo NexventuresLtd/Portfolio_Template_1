@@ -64,7 +64,7 @@ const ContactInfo: React.FC<ContactInfoProps> = ({ theme, t }) => (
                 </div>
                 <div>
                     <p className="text-slate-100 text-sm mb-1">{t('footer.contact.phone')}</p>
-                    <a href="tel:+250788123456" className="text-slate-200 font-semibold hover:text-accent transition-colors">
+                    <a href="tel:+250788123456" className="text-slate-200 text-xs hover:text-accent transition-colors">
                         +250 790 225 000
                     </a>
                 </div>
@@ -77,7 +77,7 @@ const ContactInfo: React.FC<ContactInfoProps> = ({ theme, t }) => (
                 </div>
                 <div>
                     <p className="text-slate-100 text-sm mb-1">{t('footer.contact.email')}</p>
-                    <a href="mailto:info@robertconstruction.rw" className="text-slate-200 font-semibold hover:text-accent transition-colors">
+                    <a href="mailto:info@robertconstruction.rw" className="text-slate-200 text-xs hover:text-accent transition-colors">
                         info@robertconstruction.rw
                     </a>
                 </div>
@@ -90,7 +90,7 @@ const ContactInfo: React.FC<ContactInfoProps> = ({ theme, t }) => (
                 </div>
                 <div>
                     <p className="text-slate-100 text-sm mb-1">{t('footer.contact.location')}</p>
-                    <p className="text-slate-200 font-semibold">
+                    <p className="text-slate-200 text-xs">
                         KG 123 St, Kimisagara<br />
                         Nyarugenge, Kigali, Rwanda
                     </p>
@@ -104,7 +104,7 @@ const ContactInfo: React.FC<ContactInfoProps> = ({ theme, t }) => (
                 </div>
                 <div>
                     <p className="text-slate-100 text-sm mb-1">{t('footer.contact.hours')}</p>
-                    <p className="text-slate-200 font-semibold">
+                    <p className="text-slate-200 text-xs">
                         {t('footer.contact.hoursDetail').split('\n').map((line, i) => (
                             <React.Fragment key={i}>
                                 {line}
@@ -160,9 +160,9 @@ const Newsletter: React.FC<NewsletterProps> = ({ theme, t }) => {
                     </div>
                     <button
                         type="submit"
-                        className={`w-full flex items-center justify-center px-6 py-3 rounded-lg font-semibold transition-all duration-200 ${theme === 'dark'
+                        className={`w-full flex items-center justify-center px-6 py-3 rounded-lg text-sm transition-all duration-200 ${theme === 'dark'
                             ? 'bg-accent text-white hover:bg-accent-hover'
-                            : 'bg-accent text-white hover:bg-accent-hover'
+                            : 'bg-secondary text-white hover:bg-accent-hover'
                             } hover:scale-105 shadow-lg hover:shadow-xl`}
                     >
                         <span>{t('footer.newsletter.button')}</span>
@@ -173,7 +173,7 @@ const Newsletter: React.FC<NewsletterProps> = ({ theme, t }) => {
                 <div className={`p-4 rounded-lg text-center ${theme === 'dark' ? 'bg-success/20' : 'bg-success/10'
                     }`}>
                     <div className="text-success text-2xl mb-2">✓</div>
-                    <p className="text-success font-semibold">{t('footer.newsletter.success.title')}</p>
+                    <p className="text-success text-xs">{t('footer.newsletter.success.title')}</p>
                     <p className="text-slate-100 text-sm mt-1">{t('footer.newsletter.success.message')}</p>
                 </div>
             )}

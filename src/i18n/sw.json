@@ -115,18 +115,36 @@
             "members": [
                 {
                     "name": "Eng. Robert",
-                    "role": "Mwanzilishi na Mkurugenzi Mtendaji",
-                    "bio": "Mhandisi wa ujenzi mwenye uzoefu wa zaidi ya miaka 20 katika usimamizi wa ujenzi na maendeleo ya miradi."
-                },
-                {
-                    "name": "Sarah Johnson",
-                    "role": "Mkurugenzi wa Shughuli",
-                    "bio": "Mtaalam wa usimamizi wa ujenzi anayejihusisha na miradi mikubwa ya biashara."
-                },
-                {
-                    "name": "Michael Chen",
-                    "role": "Mkuu wa Uhandisi",
-                    "bio": "Mhandisi wa miundo yenye ujuzi katika mazoezi ya ujenzi endelevu na muundo wa ubunifu."
+                    "role": "Founder & CEO",
+                    "bio": "Civil engineer with 20+ years of experience in construction management and project development.",
+                    "personal": {
+                        "age": "45",
+                        "location": "New York, USA",
+                        "interests": [
+                            "Sustainable Architecture",
+                            "Mountain Climbing",
+                            "Vintage Cars"
+                        ]
+                    },
+                    "contact": {
+                        "email": "robert.ceo@company.com",
+                        "phone": "+1 (555) 123-4567"
+                    },
+                    "social": {
+                        "twitter": "@robert_engineer",
+                        "linkedin": "linkedin.com/in/robert-construction",
+                        "github": "github.com/robert-builds"
+                    },
+                    "work": {
+                        "position": "Chief Executive Officer",
+                        "department": "Executive",
+                        "skills": [
+                            "Project Management",
+                            "Structural Engineering",
+                            "Team Leadership",
+                            "Budgeting"
+                        ]
+                    }
                 }
             ]
         }
