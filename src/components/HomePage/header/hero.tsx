@@ -7,14 +7,16 @@ import {
     Award,
 } from 'lucide-react';
 import { useTheme } from '../../../contexts/ThemeContext';
+import { useLanguage } from '../../../contexts/LanguageContext';
 
 const Hero: React.FC = () => {
     const { theme } = useTheme();
+    const { t } = useLanguage();
 
     const stats = [
-        { icon: Building2, value: '500+', label: 'Projects Completed' },
-        { icon: Users, value: '15+', label: 'Years Experience' },
-        { icon: Award, value: '100%', label: 'Client Satisfaction' }
+        { icon: Building2, value: '500+', label: t('hero.stats.projects') },
+        { icon: Users, value: '15+', label: t('hero.stats.experience') },
+        { icon: Award, value: '100%', label: t('hero.stats.satisfaction') }
     ];
 
     return (
@@ -48,23 +50,24 @@ const Hero: React.FC = () => {
 
             {/* Content */}
             <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center w-full max-md:pt-16">
-                <div className="max-w-4xl mx-auto">
+                <div className="max-w-7xl mx-auto">
                     {/* Badge */}
                     <div className={`inline-flex items-center px-4 py-2 ${theme === 'dark' ? 'bg-secondary text-primary' : 'bg-accent text-white'} rounded-full text-sm font-medium mb-6 ${theme === 'dark' ? 'dark:border-secondary' : 'border-accent'}`}>
                         <Award className="h-4 w-4 mr-2" />
-                        Professional Construction Services Since 2009
+                        {t('hero.badge')}
                     </div>
 
                     {/* Main heading */}
                     <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 leading-tight px-4">
-                        Building Excellence
-                        {" "}Crafting Futures
+                        {t('hero.headingPart1')}
+                        {" "}{t('hero.headingPart2')}
                     </h1>
 
                     {/* Subtitle */}
-                    <p className="text-lg md:text-xl lg:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed px-4">
-                        At Robert Construction, we combine <strong className="text-white">technical expertise, modern tools, and skilled craftsmanship</strong> to deliver projects that are safe, functional, and sustainable.
-                    </p>
+                    <p 
+                        className="text-lg md:text-xl lg:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed px-4"
+                        dangerouslySetInnerHTML={{ __html: t('hero.subtitle') }}
+                    />
 
                     {/* CTA Buttons */}
                     <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12 px-4">
@@ -72,7 +75,7 @@ const Hero: React.FC = () => {
                             href="#projects"
                             className={`${theme === 'dark' ? 'bg-secondary hover:bg-secondary' : 'bg-accent hover:bg-accent-hover'} text-white px-6 py-3 sm:px-8 sm:py-4 rounded-lg font-medium transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2 shadow-xl hover:shadow-2xl`}
                         >
-                            <span>View Our Projects</span>
+                            <span>{t('hero.ctaProjects')}</span>
                             <ArrowRight className="h-5 w-5" />
                         </a>
                         <a
@@ -80,12 +83,12 @@ const Hero: React.FC = () => {
                             className="bg-transparent  text-white hover:bg-white hover:text-primary px-6 py-3 sm:px-8 sm:py-4 rounded-lg font-medium transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2"
                         >
                             <Phone className="h-5 w-5" />
-                            <span>Get Free Quote</span>
+                            <span>{t('hero.ctaQuote')}</span>
                         </a>
                     </div>
 
                     {/* Stats */}
-                    <div className="grid grid-cols-3 sm:grid-cols-3 gap-6 md:gap-8 max-w-4xl mx-auto px-4">
+                    <div className="grid grid-cols-3 sm:grid-cols-3 gap-6 md:gap-8 max-w-7xl mx-auto px-4">
                         {stats.map((stat, index) => {
                             const IconComponent = stat.icon;
                             return (

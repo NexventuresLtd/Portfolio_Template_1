@@ -5,6 +5,7 @@ import {
   Phone, 
   Mail, 
   MapPin, 
+  ArrowRight, 
   Building2, 
   ChevronDown,
   Sun,
@@ -43,22 +44,22 @@ const Navbar: React.FC = () => {
   ];
 
   const navItems: NavItem[] = [
-    { name: 'Home', href: '#home' },
+    { name: t('navbar.menu.home'), href: '#home' },
     { 
-      name: 'Services', 
+      name: t('navbar.menu.services'), 
       href: '#services',
       hasDropdown: true,
       dropdownItems: [
-        { name: 'Residential Construction', href: '#residential' },
-        { name: 'Commercial Projects', href: '#commercial' },
-        { name: 'Renovations', href: '#renovations' },
-        { name: 'Project Management', href: '#management' }
+        { name: t('navbar.menu.residential'), href: '#residential' },
+        { name: t('navbar.menu.commercial'), href: '#commercial' },
+        { name: t('navbar.menu.renovations'), href: '#renovations' },
+        { name: t('navbar.menu.management'), href: '#management' }
       ]
     },
-    { name: 'Projects', href: '#projects' },
-    { name: 'About', href: '#about' },
-    { name: 'Testimonials', href: '#testimonials' },
-    { name: 'Contact', href: '#contact' }
+    { name: t('navbar.menu.projects'), href: '#projects' },
+    { name: t('navbar.menu.about'), href: '#about' },
+    { name: t('navbar.menu.testimonials'), href: '#testimonials' },
+    { name: t('navbar.menu.contact'), href: '#contact' }
   ];
 
   useEffect(() => {
@@ -114,16 +115,16 @@ const Navbar: React.FC = () => {
             <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-6">
               <div className="flex items-center space-x-2">
                 <Phone className="h-4 w-4" />
-                <span>+250 788 123 456</span>
+                <span>{t('navbar.contact.phone')}</span>
               </div>
               <div className="flex items-center space-x-2">
                 <Mail className="h-4 w-4" />
-                <span>info@robertconstruction.rw</span>
+                <span>{t('navbar.contact.email')}</span>
               </div>
             </div>
             <div className="flex items-center space-x-2">
               <MapPin className="h-4 w-4" />
-              <span>Kigali, Rwanda</span>
+              <span>{t('navbar.contact.address')}</span>
             </div>
           </div>
         </div>
@@ -138,7 +139,7 @@ const Navbar: React.FC = () => {
             <span className={`ml-2 text-xl font-bold ${
               isScrolled ? (theme === 'dark' ? 'text-primary' : 'text-white') : 'text-white'
             }`}>
-              R-Construct
+              {t('navbar.companyName')}
             </span>
           </div>
 
@@ -321,7 +322,7 @@ const Navbar: React.FC = () => {
             {/* Mobile Language Selector */}
             <div className="px-3 py-2">
               <label className={`text-sm ${theme === 'dark' ? 'text-primary' : 'text-primary'}`}>
-                Language:
+                {t('navbar.menu.language')}:
               </label>
               <select
                 value={lang}
@@ -345,7 +346,7 @@ const Navbar: React.FC = () => {
               className="block px-3 py-2 bg-accent hover:bg-accent-hover text-white rounded-md text-base font-medium text-center mt-2"
               onClick={() => setIsOpen(false)}
             >
-              Get Quote
+              {t('navbar.menu.getQuote')}
             </a>
           </div>
         </div>

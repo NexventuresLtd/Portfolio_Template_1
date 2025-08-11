@@ -1,40 +1,36 @@
 {
-    "Project_information": [
-        {
-            "name": "Robert Construction",
-            "description": "Robert Construction is a trusted engineering and construction company led by Eng. Robert, a highly skilled and experienced civil engineer with a proven record of delivering innovative, sustainable, and high-quality projects. We specialize in providing end-to-end construction and engineering solutions for residential, commercial, and industrial developments. From concept design to final handover, our team ensures precision, quality, and efficiency in every project we undertake. Our commitment is built on integrity, safety, and excellence, ensuring every client gets reliable solutions that exceed expectations."
+    "navbar": {
+        "companyName": "R-Construct",
+        "contact": {
+            "phone": "+250 788 123 456",
+            "email": "info@robertconstruction.rw",
+            "address": "Kigali, Rwanda"
+        },
+        "menu": {
+            "home": "Home",
+            "services": "Services",
+            "residential": "Residential Construction",
+            "commercial": "Commercial Projects",
+            "renovations": "Renovations",
+            "management": "Project Management",
+            "projects": "Projects",
+            "about": "About",
+            "testimonials": "Testimonials",
+            "contact": "Contact",
+            "getQuote": "Get Quote"
         }
-    ],
-    "header": {
-        "title": "Welcome to My Portfolio",
-        "subtitle": "Showcasing my best work"
     },
-    "navigation_links": [
-        {
-            "name": "Home",
-            "icon": "<HomeIcon/>"
-        },
-        {
-            "name": "Services",
-            "icon": "<ServicesIcon/>"
-        },
-        {
-            "name": "Projects",
-            "icon": "<FolderIcon/>"
-        },
-        {
-            "name": "Testimonials",
-            "icon": "<QuoteIcon/>"
-        },
-        {
-            "name": "Contact Us",
-            "icon": "<ContactIcon/>"
+    "hero": {
+        "badge": "Professional Construction Services Since 2009",
+        "headingPart1": "Building Excellence",
+        "headingPart2": "Crafting Futures",
+        "subtitle": "At Robert Construction, we combine <strong>technical expertise, modern tools, and skilled craftsmanship</strong> to deliver projects that are safe, functional, and sustainable.",
+        "ctaProjects": "View Our Projects",
+        "ctaQuote": "Get Free Quote",
+        "stats": {
+            "projects": "Projects Completed",
+            "experience": "Years Experience",
+            "satisfaction": "Client Satisfaction"
         }
-    ],
-    "theme": {
-        "toggle_button": "Toggle Theme"
-    },
-    "language": {
-        "selector_label": "Language"
     }
 }

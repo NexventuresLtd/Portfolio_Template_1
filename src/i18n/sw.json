@@ -1,40 +1,36 @@
 {
-    "Project_information": [
-        {
-            "name": "Robert Construction",
-            "description": "Robert Construction is a trusted engineering and construction company led by Eng. Robert, a highly skilled and experienced civil engineer with a proven record of delivering innovative, sustainable, and high-quality projects. We specialize in providing end-to-end construction and engineering solutions for residential, commercial, and industrial developments. From concept design to final handover, our team ensures precision, quality, and efficiency in every project we undertake. Our commitment is built on integrity, safety, and excellence, ensuring every client gets reliable solutions that exceed expectations."
+    "navbar": {
+        "companyName": "R-Construct",
+        "contact": {
+            "phone": "+250 788 123 456",
+            "email": "info@robertconstruction.rw",
+            "address": "Kigali, Rwanda"
+        },
+        "menu": {
+            "home": "Nyumbani",
+            "services": "Huduma",
+            "residential": "Ujenzi wa Makazi",
+            "commercial": "Miradi ya Biashara",
+            "renovations": "Ukarabati",
+            "management": "Usimamizi wa Miradi",
+            "projects": "Miradi",
+            "about": "Kuhusu",
+            "testimonials": "Uthibitisho",
+            "contact": "Mawasiliano",
+            "getQuote": "Pata Bei"
         }
-    ],
-    "header": {
-        "title": "Welcome to My Portfolio",
-        "subtitle": "Showcasing my best work"
     },
-    "navigation_links": [
-        {
-            "name": "Home",
-            "icon": "<HomeIcon/>"
-        },
-        {
-            "name": "Services",
-            "icon": "<ServicesIcon/>"
-        },
-        {
-            "name": "Projects",
-            "icon": "<FolderIcon/>"
-        },
-        {
-            "name": "Testimonials",
-            "icon": "<QuoteIcon/>"
-        },
-        {
-            "name": "Contact Us",
-            "icon": "<ContactIcon/>"
+    "hero": {
+        "badge": "Huduma za Ujenzi Kitaalam Tangu 2009",
+        "headingPart1": "Kujenga Ubora",
+        "headingPart2": "Kuunda Mustakabali",
+        "subtitle": "Robert Construction, tunachangia <strong>utalamu wa kiufundi, zana za kisasa na ufundi stadi</strong> kutoa miradi salama, yenye utendaji na endelevu.",
+        "ctaProjects": "Tazama Miradi Yetu",
+        "ctaQuote": "Pata Bei ya Bure",
+        "stats": {
+            "projects": "Miradi Imekamilika",
+            "experience": "Miaka ya Uzoefu",
+            "satisfaction": "Uridhishaji wa Mteja"
         }
-    ],
-    "theme": {
-        "toggle_button": "Toggle Theme"
-    },
-    "language": {
-        "selector_label": "Language"
     }
 }
