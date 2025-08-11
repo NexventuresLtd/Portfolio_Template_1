@@ -16,7 +16,7 @@ export const createNavItems = (t: (key: string) => string): NavItem[] => [
   { name: t("navbar.menu.projects"), href: "#projects" },
   { name: t("navbar.menu.about"), href: "/#about" },
   { name: t("navbar.menu.testimonials"), href: "/services/#testimonials" },
-  { name: t("navbar.menu.contact"), href: "#contact" },
+  { name: t("navbar.menu.contact"), href: "/contact" },
 ];
 
 // You can also add other navigation-related constants here

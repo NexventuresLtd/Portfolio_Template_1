@@ -3,6 +3,7 @@ import { ChevronDown } from "lucide-react";
 import { useTheme } from "../../../contexts/ThemeContext";
 import DropdownMenu from "./DropdownMenu";
 import type { NavItemProps } from "../../../types/HeaderTypes";
+import { Link } from "react-router-dom";
 
 
 const NavItem: React.FC<NavItemProps> = ({
@@ -27,8 +28,8 @@ const NavItem: React.FC<NavItemProps> = ({
         }
       }}
     >
-      <a
-        href={href}
+      <Link
+        to={href}
         className={`px-3 py-2 rounded-sm text-sm font-medium transition-colors duration-200 flex items-center space-x-1 ${
           isScrolled
             ? theme === "dark"
@@ -48,7 +49,7 @@ const NavItem: React.FC<NavItemProps> = ({
             }`}
           />
         )}
-      </a>
+      </Link>
 
       {hasDropdown && dropdownItems && (
         <DropdownMenu items={dropdownItems} isVisible={isDropdownActive} />

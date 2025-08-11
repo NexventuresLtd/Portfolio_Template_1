@@ -5,8 +5,8 @@ import { TestimonialImage } from './TestimonialImage';
 import { TestimonialControls } from './TestimonialControls';
 import { TestimonialStats } from './TestimonialStats';
 import type { Testimonial } from '../../../types/testimonial';
-import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
-import { useAutoPlay } from '../../hooks/useAutoPlay';
+import { useIntersectionObserver } from '../../../hooks/useIntersectionObserver';
+import { useAutoPlay } from '../../../hooks/useAutoPlay';
 import { AnimatePresence, motion } from 'framer-motion';
 
 interface TestimonialsSectionProps {
@@ -53,6 +53,7 @@ const TestimonialsSection = ({ testimonials }: TestimonialsSectionProps) => {
     <section 
       ref={sectionRef}
       className="py-20 bg-background relative overflow-hidden"
+      id="testimonials"
     >
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
@@ -63,7 +64,7 @@ const TestimonialsSection = ({ testimonials }: TestimonialsSectionProps) => {
       <div className="absolute top-20 left-10 w-32 h-32 bg-accent/10 rounded-full animate-[float_8s_ease-in-out_infinite] hidden lg:block" />
       <div className="absolute bottom-20 right-10 w-24 h-24 bg-primary/10 rounded-full animate-[float_6s_ease-in-out_infinite_reverse] hidden lg:block" />
 
-      <div className="px-6 lg:px-8">
+      <div className="px-6 lg:px-8" >
         <TestimonialHeader
           title="What People Say"
           description="Discover why our clients trust us with their most important construction projects. Real feedback from real people who've experienced our exceptional service."

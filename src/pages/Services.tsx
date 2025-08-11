@@ -2,11 +2,11 @@
 import Footer from "../components/HomePage/footer/Footer"
 import Navbar from "../components/HomePage/header/NavBar"
 
-import HeroSection from "../components/Service/header/HeroComp"
+import HeroSection from "../components/Service_Testmo/header/HeroComp"
 
-import ServicesComponent from "../components/Service/body/ServicesComp"
+import ServicesComponent from "../components/Service_Testmo/body/ServicesComp"
 import { services } from "../constants/ServiceConst"
-import TestimonialsSection from "../components/Service/body/TestMo"
+import TestimonialsSection from "../components/Service_Testmo/body/TestMo"
 import testimonials from "../constants/Testmoni"
 
 

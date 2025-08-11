@@ -34,7 +34,7 @@ const ServicesComponent = ({ services }: ServicesProps) => {
 
     return (
         <div className={`${bgClass} py-16 px-4 sm:px-6 lg:px-8`}>
-            <div className="max-w-full md:max-w-11/12 mx-auto">
+            <div className="max-w-full md:max-w-11/12 mx-auto" >
                 {/* Header */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
