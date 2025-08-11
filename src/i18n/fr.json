@@ -17,7 +17,8 @@
             "about": "À Propos",
             "testimonials": "Témoignages",
             "contact": "Contact",
-            "getQuote": "Obtenir un Devis"
+            "getQuote": "Obtenir un Devis",
+            "language": "Change language"
         }
     },
     "hero": {

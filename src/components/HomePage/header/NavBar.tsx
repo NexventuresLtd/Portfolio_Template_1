@@ -2,9 +2,6 @@ import React, { useState, useEffect } from 'react';
 import {
     Menu,
     X,
-    Phone,
-    Mail,
-    MapPin,
     Building2,
     ChevronDown,
     Sun,
@@ -104,28 +101,6 @@ const Navbar: React.FC = () => {
                 ? `${theme === 'dark' ? 'bg-surface' : 'bg-primary'} backdrop-blur-md shadow-lg }`
                 : 'bg-transparent'
             }`}>
-            {/* Top bar with contact info */}
-            <div className={`${theme === 'dark' ? 'bg-background' : 'bg-primary'} text-white  transition-all duration-300 ${isScrolled ? 'h-0 overflow-hidden opacity-0' : 'h-auto opacity-100 py-2'
-                }`}>
-                <div className="w-full md:max-w-11/12 mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="flex flex-col sm:flex-row justify-between items-center text-sm space-y-2 sm:space-y-0">
-                        <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-6">
-                            <div className="flex items-center space-x-2">
-                                <Phone className="h-4 w-4" />
-                                <span>{t('navbar.contact.phone')}</span>
-                            </div>
-                            <div className="flex items-center space-x-2">
-                                <Mail className="h-4 w-4" />
-                                <span>{t('navbar.contact.email')}</span>
-                            </div>
-                        </div>
-                        <div className="flex items-center space-x-2">
-                            <MapPin className="h-4 w-4" />
-                            <span>{t('navbar.contact.address')}</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
             {/* Main navigation */}
             <div className="w-full md:max-w-11/12 mx-auto px-0">

@@ -17,7 +17,8 @@
             "about": "About",
             "testimonials": "Testimonials",
             "contact": "Contact",
-            "getQuote": "Get Quote"
+            "getQuote": "Get Quote",
+            "language":"Change language"
         }
     },
     "hero": {
