@@ -110,7 +110,7 @@ const AboutUs = () => {
     return (
         <div className={`min-h-screen transition-colors duration-300 ${theme === 'dark' ? 'bg-background' : 'bg-background'}`}>
             {/* Hero Section */}
-            <section className={`relative py-20 md:py-24 overflow-hidden ${theme === 'dark' ? 'bg-surface' : 'bg-surface'}`}>
+            <section id='about' className={`relative py-20 md:py-24 overflow-hidden ${theme === 'dark' ? 'bg-surface' : 'bg-surface'}`}>
                 <div className="max-w-full md:max-w-11/12 mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="grid lg:grid-cols-2 gap-12 items-center">
                         <motion.div
@@ -303,7 +303,7 @@ const AboutUs = () => {
             </section>
 
             {/* Team Section */}
-            <section className={`py-16 md:py-20 ${theme === 'dark' ? 'bg-surface' : 'bg-surface'}`}>
+            <section className={`py-16 md:py-20 ${theme === 'dark' ? 'bg-surface' : 'bg-surface'}`} id='team'>
                 <div className="max-w-full md:max-w-11/12 mx-auto px-4 sm:px-6 lg:px-8">
                     <SectionTitle
                         title={t('about.team.title')}
