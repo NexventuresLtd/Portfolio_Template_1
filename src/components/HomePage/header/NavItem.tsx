@@ -32,9 +32,9 @@ const NavItem: React.FC<NavItemProps> = ({
         className={`px-3 py-2 rounded-sm text-sm font-medium transition-colors duration-200 flex items-center space-x-1 ${
           isScrolled
             ? theme === "dark"
-              ? "text-primary hover:bg-secondary"
-              : "text-white hover:bg-accent"
-            : "text-white hover:bg-secondary"
+              ? "text-primary hover:bg-primary"
+              : "text-white hover:bg-primary"
+            : "text-white hover:bg-primary"
         }`}
         onClick={() =>
           windowWidth < 768 && hasDropdown && onDropdownToggle(name)

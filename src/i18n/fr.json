@@ -115,18 +115,36 @@
             "members": [
                 {
                     "name": "Eng. Robert",
-                    "role": "Fondateur & PDG",
-                    "bio": "Ingénieur civil avec plus de 20 ans d'expérience en gestion de construction et développement de projets."
-                },
-                {
-                    "name": "Sarah Johnson",
-                    "role": "Directrice des Opérations",
-                    "bio": "Experte en gestion de construction spécialisée dans les projets commerciaux de grande envergure."
-                },
-                {
-                    "name": "Michael Chen",
-                    "role": "Chef d'Ingénierie",
-                    "bio": "Ingénieur structurel spécialisé dans les pratiques de construction durable et la conception innovante."
+                    "role": "Founder & CEO",
+                    "bio": "Civil engineer with 20+ years of experience in construction management and project development.",
+                    "personal": {
+                        "age": "45",
+                        "location": "New York, USA",
+                        "interests": [
+                            "Sustainable Architecture",
+                            "Mountain Climbing",
+                            "Vintage Cars"
+                        ]
+                    },
+                    "contact": {
+                        "email": "robert.ceo@company.com",
+                        "phone": "+1 (555) 123-4567"
+                    },
+                    "social": {
+                        "twitter": "@robert_engineer",
+                        "linkedin": "linkedin.com/in/robert-construction",
+                        "github": "github.com/robert-builds"
+                    },
+                    "work": {
+                        "position": "Chief Executive Officer",
+                        "department": "Executive",
+                        "skills": [
+                            "Project Management",
+                            "Structural Engineering",
+                            "Team Leadership",
+                            "Budgeting"
+                        ]
+                    }
                 }
             ]
         }

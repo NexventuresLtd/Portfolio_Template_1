@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import {  Menu, X } from "lucide-react";
 import { useTheme } from "../../../contexts/ThemeContext";
 import { useLanguage } from "../../../contexts/LanguageContext";
 import {
@@ -15,17 +15,17 @@ import MobileMenu from "./MobileMenu";
 import type { NavItem } from "../../../types/HeaderTypes";
 
 const Navbar: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-  const [showLanguageDropdown, setShowLanguageDropdown] = useState(false);
-  const [windowWidth, setWindowWidth] = useState(
-    typeof window !== "undefined" ? window.innerWidth : 1024
-  );
+    const [isOpen, setIsOpen] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(false);
+    const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+    const [showLanguageDropdown, setShowLanguageDropdown] = useState(false);
+    const [windowWidth, setWindowWidth] = useState(
+        typeof window !== "undefined" ? window.innerWidth : 1024
+    );
 
-  // Theme and Language hooks
-  const { theme } = useTheme();
-  const { t } = useLanguage();
+    // Theme and Language hooks
+    const { theme } = useTheme();
+    const { t } = useLanguage();
 
   const navItems: NavItem[] = createNavItems(t);
 
@@ -85,74 +85,71 @@ const Navbar: React.FC = () => {
     setIsOpen(false);
   };
 
-  return (
-    <nav
-      className={`fixed w-full z-50 transition-all duration-300 ${
-        isScrolled
-          ? `${
-              theme === "dark" ? "bg-surface" : "bg-primary"
-            } backdrop-blur-md shadow-lg }`
-          : "bg-transparent"
-      }`}
-    >
-      {/* Main navigation */}
-      <div className="w-full md:max-w-11/12 mx-auto px-0">
-        <div className="flex justify-between items-center h-16">
-          {/* Logo */}
-          <Logo isScrolled={isScrolled} />
+    return (
+        <nav
+            className={`fixed w-full z-50 transition-all duration-300 ${isScrolled
+                ? `${theme === "dark" ? "bg-surface" : "bg-primary"
+                } backdrop-blur-md shadow-lg }`
+                : "bg-transparent"
+                }`}
+        >
+            {/* Main navigation */}
+            <div className="w-full md:max-w-11/12 mx-auto px-0">
+                <div className="flex justify-between items-center h-16">
+                    {/* Logo */}
+                    <Logo isScrolled={isScrolled} />
 
-          {/* Desktop navigation */}
-          <NavLinks
-            navItems={navItems}
-            isScrolled={isScrolled}
-            activeDropdown={activeDropdown}
-            windowWidth={windowWidth}
-            onDropdownToggle={handleDropdownToggle}
-          />
+                    {/* Desktop navigation */}
+                    <NavLinks
+                        navItems={navItems}
+                        isScrolled={isScrolled}
+                        activeDropdown={activeDropdown}
+                        windowWidth={windowWidth}
+                        onDropdownToggle={handleDropdownToggle}
+                    />
 
-          {/* Right side controls */}
-          <div className="flex items-center ">
-            {/* Theme Toggle */}
-            <ThemeToggle isScrolled={isScrolled} />
+                    {/* Right side controls */}
+                    <div className="flex items-center ">
+                        {/* Theme Toggle */}
+                        <ThemeToggle isScrolled={isScrolled} />
 
-            {/* Language Selector - Desktop */}
-            <LanguageSelector
-              isScrolled={isScrolled}
-              showLanguageDropdown={showLanguageDropdown}
-              onToggleDropdown={toggleLanguageDropdown}
+                        {/* Language Selector - Desktop */}
+                        <LanguageSelector
+                            isScrolled={isScrolled}
+                            showLanguageDropdown={showLanguageDropdown}
+                            onToggleDropdown={toggleLanguageDropdown}
+                        />
+
+                        {/* Mobile menu button */}
+                        <button
+                            onClick={() => setIsOpen(!isOpen)}
+                            className={`lg:hidden p-2 rounded-md ${isScrolled
+                                ? theme === "dark"
+                                    ? "text-primary"
+                                    : "text-white"
+                                : "text-white"
+                                }`}
+                        >
+                            {isOpen ? (
+                                <X className="h-6 w-6" />
+                            ) : (
+                                <Menu className="h-6 w-6" />
+                            )}
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            {/* Mobile menu */}
+            <MobileMenu
+                isOpen={isOpen}
+                navItems={navItems}
+                activeDropdown={activeDropdown}
+                onDropdownToggle={handleDropdownToggle}
+                onClose={closeMobileMenu}
             />
-
-            {/* Mobile menu button */}
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className={`lg:hidden p-2 rounded-md ${
-                isScrolled
-                  ? theme === "dark"
-                    ? "text-primary"
-                    : "text-white"
-                  : "text-white"
-              }`}
-            >
-              {isOpen ? (
-                <X className="h-6 w-6" />
-              ) : (
-                <Menu className="h-6 w-6" />
-              )}
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* Mobile menu */}
-      <MobileMenu
-        isOpen={isOpen}
-        navItems={navItems}
-        activeDropdown={activeDropdown}
-        onDropdownToggle={handleDropdownToggle}
-        onClose={closeMobileMenu}
-      />
-    </nav>
-  );
+        </nav>
+    );
 };
 
 export default Navbar;
