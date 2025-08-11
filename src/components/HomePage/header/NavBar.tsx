@@ -88,8 +88,8 @@ const Navbar: React.FC = () => {
     return (
         <nav
             className={`fixed w-full z-50 transition-all duration-300 ${isScrolled
-                ? `${theme === "dark" ? "bg-surface" : "bg-primary"
-                } backdrop-blur-md shadow-lg }`
+                ? `${theme === "dark" ? "bg-surface" : "bg-surface"
+                } backdrop-blur-md shadow-sm }`
                 : "bg-transparent"
                 }`}
         >

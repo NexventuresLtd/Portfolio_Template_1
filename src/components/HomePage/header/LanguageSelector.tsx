@@ -26,7 +26,7 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({
       <div className="px-3 py-2">
         <label
           className={`text-sm ${
-            theme === "dark" ? "text-primary" : "text-primary"
+            theme === "dark" ? "text-primary" : "text-secondary"
           }`}
         >
           {t("navbar.menu.language")}:
@@ -37,7 +37,7 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({
           className={`ml-2 px-2 py-1 text-sm rounded border ${
             theme === "dark"
               ? "bg-surface border-color text-primary"
-              : "bg-white border-gray-300 text-primary"
+              : "bg-white border-gray-300 text-secondary"
           }`}
         >
           {languages.map((language) => (
@@ -58,7 +58,7 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({
           isScrolled
             ? theme === "dark"
               ? "text-primary hover:bg-secondary/20"
-              : "text-white hover:bg-accent/20"
+              : "text-secondaryhover:bg-accent/20"
             : "text-white hover:bg-white/10"
         }`}
         aria-label="Select language"

@@ -23,7 +23,7 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({ items, isVisible }) => {
           className={`block px-4 py-2 text-sm transition-colors duration-200 ${
             theme === "dark"
               ? "text-primary hover:bg-secondary hover:text-secondary"
-              : "text-primary hover:bg-accent hover:text-accent"
+              : "text-secondary hover:bg-accent hover:text-accent"
           }`}
         >
           {item.name}

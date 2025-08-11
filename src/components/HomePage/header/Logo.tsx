@@ -26,7 +26,7 @@ const Logo: React.FC<LogoProps> = ({ isScrolled }) => {
           isScrolled
             ? theme === "dark"
               ? "text-primary"
-              : "text-white"
+              : "text-secondary"
             : "text-white"
         }`}
       >

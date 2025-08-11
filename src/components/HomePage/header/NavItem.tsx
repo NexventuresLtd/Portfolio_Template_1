@@ -33,7 +33,7 @@ const NavItem: React.FC<NavItemProps> = ({
           isScrolled
             ? theme === "dark"
               ? "text-primary hover:bg-primary"
-              : "text-white hover:bg-primary"
+              : "text-secondary hover:bg-primary hover:text-white"
             : "text-white hover:bg-primary"
         }`}
         onClick={() =>

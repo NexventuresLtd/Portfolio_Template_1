@@ -1,11 +1,11 @@
 import type { NavItem } from "../types/HeaderTypes";
 
 export const createNavItems = (t: (key: string) => string): NavItem[] => [
-  { name: t("navbar.menu.home"), href: "#home" },
+  { name: t("navbar.menu.home"), href: "/home" },
   {
     name: t("navbar.menu.services"),
-    href: "#services",
-    hasDropdown: true,
+    href: "/services",
+    hasDropdown: false,
     dropdownItems: [
       { name: t("navbar.menu.residential"), href: "#residential" },
       { name: t("navbar.menu.commercial"), href: "#commercial" },
