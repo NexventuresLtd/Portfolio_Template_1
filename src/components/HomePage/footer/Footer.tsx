@@ -21,7 +21,7 @@ import {
   Code
 } from 'lucide-react';
 import { useTheme } from '../../../contexts/ThemeContext';
-
+import { useLanguage } from '../../../contexts/LanguageContext';
 
 interface QuickLinkProps {
   title: string;
@@ -31,13 +31,13 @@ interface QuickLinkProps {
 
 const QuickLinks: React.FC<QuickLinkProps> = ({ title, links }) => (
   <div>
-    <h3 className="text-lg font-bold text-primary mb-6">{title}</h3>
+    <h3 className="text-lg font-bold text-slate-200 mb-6">{title}</h3>
     <ul className="space-y-3">
       {links.map((link, index) => (
         <li key={index}>
           <a
             href={link.href}
-            className={`flex items-center text-secondary hover:text-accent transition-colors duration-200 group ${
+            className={`flex items-center text-slate-200 hover:text-accent transition-colors duration-200 group ${
               link.isExternal ? 'hover:translate-x-1' : ''
             }`}
             target={link.isExternal ? '_blank' : '_self'}
@@ -56,35 +56,36 @@ const QuickLinks: React.FC<QuickLinkProps> = ({ title, links }) => (
 
 interface ContactInfoProps {
   theme: 'light' | 'dark';
+  t: (key: string) => string;
 }
 
-const ContactInfo: React.FC<ContactInfoProps> = ({ theme }) => (
+const ContactInfo: React.FC<ContactInfoProps> = ({ theme, t }) => (
   <div>
-    <h3 className="text-lg font-bold text-primary mb-6">Contact Information</h3>
+    <h3 className="text-lg font-bold text-slate-200 mb-6">{t('footer.sections.contact')}</h3>
     <div className="space-y-4">
       <div className="flex items-start">
         <div className={`w-10 h-10 rounded-lg flex items-center justify-center mr-3 mt-1 ${
-          theme === 'dark' ? 'bg-accent/20' : 'bg-accent/10'
+          theme === 'dark' ? 'bg-accent/20' : 'bg-accent text-white'
         }`}>
           <Phone className="w-5 h-5 text-accent" />
         </div>
         <div>
-          <p className="text-secondary text-sm mb-1">Phone & WhatsApp</p>
-          <a href="tel:+250788123456" className="text-primary font-semibold hover:text-accent transition-colors">
-            +250 788 123 456
+          <p className="text-slate-100 text-sm mb-1">{t('footer.contact.phone')}</p>
+          <a href="tel:+250788123456" className="text-slate-200 font-semibold hover:text-accent transition-colors">
+            +250 790 225 000
           </a>
         </div>
       </div>
       
       <div className="flex items-start">
         <div className={`w-10 h-10 rounded-lg flex items-center justify-center mr-3 mt-1 ${
-          theme === 'dark' ? 'bg-accent/20' : 'bg-accent/10'
+          theme === 'dark' ? 'bg-accent/20' : 'bg-accent text-white'
         }`}>
           <Mail className="w-5 h-5 text-accent" />
         </div>
         <div>
-          <p className="text-secondary text-sm mb-1">Email Address</p>
-          <a href="mailto:info@robertconstruction.rw" className="text-primary font-semibold hover:text-accent transition-colors">
+          <p className="text-slate-100 text-sm mb-1">{t('footer.contact.email')}</p>
+          <a href="mailto:info@robertconstruction.rw" className="text-slate-200 font-semibold hover:text-accent transition-colors">
             info@robertconstruction.rw
           </a>
         </div>
@@ -92,13 +93,13 @@ const ContactInfo: React.FC<ContactInfoProps> = ({ theme }) => (
       
       <div className="flex items-start">
         <div className={`w-10 h-10 rounded-lg flex items-center justify-center mr-3 mt-1 ${
-          theme === 'dark' ? 'bg-accent/20' : 'bg-accent/10'
+          theme === 'dark' ? 'bg-accent/20' : 'bg-accent text-white'
         }`}>
           <MapPin className="w-5 h-5 text-accent" />
         </div>
         <div>
-          <p className="text-secondary text-sm mb-1">Office Location</p>
-          <p className="text-primary font-semibold">
+          <p className="text-slate-100 text-sm mb-1">{t('footer.contact.location')}</p>
+          <p className="text-slate-200 font-semibold">
             KG 123 St, Kimisagara<br />
             Nyarugenge, Kigali, Rwanda
           </p>
@@ -107,16 +108,19 @@ const ContactInfo: React.FC<ContactInfoProps> = ({ theme }) => (
       
       <div className="flex items-start">
         <div className={`w-10 h-10 rounded-lg flex items-center justify-center mr-3 mt-1 ${
-          theme === 'dark' ? 'bg-secondary/20' : 'bg-secondary/10'
+          theme === 'dark' ? 'bg-secondary/20' : 'bg-accent'
         }`}>
-          <Clock className="w-5 h-5 text-secondary" />
+          <Clock className="w-5 h-5 text-slate-100" />
         </div>
         <div>
-          <p className="text-secondary text-sm mb-1">Working Hours</p>
-          <p className="text-primary font-semibold">
-            Mon - Fri: 8:00 AM - 6:00 PM<br />
-            Sat: 9:00 AM - 4:00 PM<br />
-            <span className="text-secondary">Sunday: Closed</span>
+          <p className="text-slate-100 text-sm mb-1">{t('footer.contact.hours')}</p>
+          <p className="text-slate-200 font-semibold">
+            {t('footer.contact.hoursDetail').split('\n').map((line, i) => (
+              <React.Fragment key={i}>
+                {line}
+                <br />
+              </React.Fragment>
+            ))}
           </p>
         </div>
       </div>
@@ -126,9 +130,10 @@ const ContactInfo: React.FC<ContactInfoProps> = ({ theme }) => (
 
 interface NewsletterProps {
   theme: 'light' | 'dark';
+  t: (key: string) => string;
 }
 
-const Newsletter: React.FC<NewsletterProps> = ({ theme }) => {
+const Newsletter: React.FC<NewsletterProps> = ({ theme, t }) => {
   const [email, setEmail] = useState('');
   const [isSubscribed, setIsSubscribed] = useState(false);
 
@@ -143,9 +148,9 @@ const Newsletter: React.FC<NewsletterProps> = ({ theme }) => {
 
   return (
     <div>
-      <h3 className="text-lg font-bold text-primary mb-4">Stay Updated</h3>
-      <p className="text-secondary mb-6 leading-relaxed">
-        Get the latest construction tips, project updates, and industry insights delivered to your inbox.
+      <h3 className="text-lg font-bold text-slate-200 mb-4">{t('footer.newsletter.title')}</h3>
+      <p className="text-slate-100 mb-6 leading-relaxed">
+        {t('footer.newsletter.description')}
       </p>
       
       {!isSubscribed ? (
@@ -155,11 +160,11 @@ const Newsletter: React.FC<NewsletterProps> = ({ theme }) => {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter your email address"
+              placeholder={t('footer.newsletter.placeholder')}
               className={`w-full px-4 py-3 rounded-lg border transition-colors duration-200 ${
                 theme === 'dark'
-                  ? 'bg-surface border-color text-primary placeholder-secondary/60 focus:border-accent'
-                  : 'bg-surface border-color text-primary placeholder-secondary/60 focus:border-accent'
+                  ? 'bg-surface border-color text-slate-200 placeholder-secondary/60 focus:border-accent'
+                  : 'border-gray-500 text-slate-200 placeholder-secondary/60 focus:border-accent'
               } focus:outline-none focus:ring-2 focus:ring-accent/20`}
               required
             />
@@ -172,7 +177,7 @@ const Newsletter: React.FC<NewsletterProps> = ({ theme }) => {
                 : 'bg-accent text-white hover:bg-accent-hover'
             } hover:scale-105 shadow-lg hover:shadow-xl`}
           >
-            <span>Subscribe Now</span>
+            <span>{t('footer.newsletter.button')}</span>
             <ArrowRight className="w-4 h-4 ml-2" />
           </button>
         </form>
@@ -181,14 +186,14 @@ const Newsletter: React.FC<NewsletterProps> = ({ theme }) => {
           theme === 'dark' ? 'bg-success/20' : 'bg-success/10'
         }`}>
           <div className="text-success text-2xl mb-2">✓</div>
-          <p className="text-success font-semibold">Successfully subscribed!</p>
-          <p className="text-secondary text-sm mt-1">Thank you for joining our newsletter.</p>
+          <p className="text-success font-semibold">{t('footer.newsletter.success.title')}</p>
+          <p className="text-slate-100 text-sm mt-1">{t('footer.newsletter.success.message')}</p>
         </div>
       )}
       
       {/* Social Media Links */}
       <div className="mt-8">
-        <p className="text-secondary text-sm mb-4">Follow us on social media:</p>
+        <p className="text-slate-100 text-sm mb-4">{t('footer.social')}</p>
         <div className="flex space-x-4">
           {[
             { icon: Facebook, href: '#', label: 'Facebook', color: '#1877F2' },
@@ -206,7 +211,7 @@ const Newsletter: React.FC<NewsletterProps> = ({ theme }) => {
                 className={`w-10 h-10 rounded-lg flex items-center justify-center transition-all duration-200 hover:scale-110 ${
                   theme === 'dark' 
                     ? 'bg-surface border border-color hover:border-accent/50' 
-                    : 'bg-surface border border-color hover:shadow-lg'
+                    : 'hover:shadow-lg'
                 }`}
                 style={{ '--hover-color': social.color } as React.CSSProperties}
                 onMouseEnter={(e) => {
@@ -218,7 +223,7 @@ const Newsletter: React.FC<NewsletterProps> = ({ theme }) => {
                   e.currentTarget.style.borderColor = '';
                 }}
               >
-                <Icon className="w-5 h-5 text-secondary hover:text-primary" />
+                <Icon className="w-5 h-5 text-slate-100 hover:text-slate-200" />
               </a>
             );
           })}
@@ -230,6 +235,7 @@ const Newsletter: React.FC<NewsletterProps> = ({ theme }) => {
 
 const Footer: React.FC = () => {
   const { theme } = useTheme();
+  const { t } = useLanguage();
   const [showBackToTop, setShowBackToTop] = useState(false);
 
   // Show back to top button when scrolling
@@ -246,46 +252,46 @@ const Footer: React.FC = () => {
   };
 
   const companyLinks = [
-    { name: 'About Us', href: '#about' },
-    { name: 'Our Team', href: '#team' },
-    { name: 'Careers', href: '#careers' },
-    { name: 'Quality Policy', href: '#quality' },
-    { name: 'Safety Standards', href: '#safety' }
+    { name: t('footer.links.about'), href: '#about' },
+    { name: t('footer.links.team'), href: '#team' },
+    { name: t('footer.links.careers'), href: '#careers' },
+    { name: t('footer.links.quality'), href: '#quality' },
+    { name: t('footer.links.safety'), href: '#safety' }
   ];
 
   const serviceLinks = [
-    { name: 'Residential Construction', href: '#residential' },
-    { name: 'Commercial Projects', href: '#commercial' },
-    { name: 'Industrial Construction', href: '#industrial' },
-    { name: 'Project Management', href: '#management' },
-    { name: 'Consultancy Services', href: '#consultancy' }
+    { name: t('footer.links.residential'), href: '#residential' },
+    { name: t('footer.links.commercial'), href: '#commercial' },
+    { name: t('footer.links.industrial'), href: '#industrial' },
+    { name: t('footer.links.management'), href: '#management' },
+    { name: t('footer.links.consultancy'), href: '#consultancy' }
   ];
 
   const resourceLinks = [
-    { name: 'Project Portfolio', href: '#portfolio' },
-    { name: 'Client Testimonials', href: '#testimonials' },
-    { name: 'Construction Blog', href: '#blog' },
-    { name: 'Free Consultation', href: '#consultation' },
-    { name: 'Cost Calculator', href: '#calculator' }
+    { name: t('footer.links.portfolio'), href: '#portfolio' },
+    { name: t('footer.links.testimonials'), href: '#testimonials' },
+    { name: t('footer.links.blog'), href: '#blog' },
+    { name: t('footer.links.consultation'), href: '#consultation' },
+    { name: t('footer.links.calculator'), href: '#calculator' }
   ];
 
   const legalLinks = [
-    { name: 'Privacy Policy', href: '#privacy' },
-    { name: 'Terms of Service', href: '#terms' },
-    { name: 'Cookie Policy', href: '#cookies' },
-    { name: 'Disclaimer', href: '#disclaimer' }
+    { name: t('footer.legal.privacy'), href: '#privacy' },
+    { name: t('footer.legal.terms'), href: '#terms' },
+    { name: t('footer.legal.cookies'), href: '#cookies' },
+    { name: t('footer.legal.disclaimer'), href: '#disclaimer' }
   ];
 
   const downloadableResources = [
-    { name: 'Company Profile', href: '#company-profile', icon: FileText },
-    { name: 'Service Brochure', href: '#brochure', icon: FileText },
-    { name: "Eng. Robert's CV", href: '#cv', icon: FileText },
-    { name: 'Safety Guidelines', href: '#safety-guide', icon: Shield }
+    { name: t('footer.downloads.profile'), href: '#company-profile', icon: FileText },
+    { name: t('footer.downloads.brochure'), href: '#brochure', icon: FileText },
+    { name: t('footer.downloads.cv'), href: '#cv', icon: FileText },
+    { name: t('footer.downloads.safety'), href: '#safety-guide', icon: Shield }
   ];
 
   return (
     <footer className={`relative transition-colors duration-300 ${
-      theme === 'dark' ? 'dark bg-surface' : 'light bg-surface border-slate-500 border-t-10'
+      theme === 'dark' ? 'dark bg-surface' : 'light bg-primary'
     }`}>
 
       {/* Back to Top Button */}
@@ -307,33 +313,32 @@ const Footer: React.FC = () => {
           {/* Company Info */}
           <div className="lg:col-span-1">
             <div className="flex items-center mb-6">
-              <Building2 className="w-8 h-8 text-accent mr-3" />
-              <span className="text-xl font-bold text-primary">Robert Construction</span>
+              <Building2 className="w-8 h-8 text-white mr-3" />
+              <span className="text-xl font-bold text-slate-200">{t('footer.companyName')}</span>
             </div>
-            <p className="text-secondary mb-6 leading-relaxed">
-              Building excellence through innovation, integrity, and professional craftsmanship. 
-              Your trusted partner for all construction and engineering solutions in Rwanda.
+            <p className="text-slate-100 mb-6 leading-relaxed">
+              {t('footer.tagline')}
             </p>
             
             {/* Certifications & Awards */}
             <div className="space-y-3">
               <div className="flex items-center">
-                <Award className="w-4 h-4 text-secondary mr-2" />
-                <span className="text-secondary text-sm">Licensed Professional Engineer</span>
+                <Award className="w-4 h-4 text-slate-100 mr-2" />
+                <span className="text-slate-100 text-sm">{t('footer.certifications.engineer')}</span>
               </div>
               <div className="flex items-center">
-                <Shield className="w-4 h-4 text-secondary mr-2" />
-                <span className="text-secondary text-sm">ISO 9001:2015 Certified</span>
+                <Shield className="w-4 h-4 text-slate-100 mr-2" />
+                <span className="text-slate-100 text-sm">{t('footer.certifications.iso')}</span>
               </div>
               <div className="flex items-center">
-                <Users className="w-4 h-4 text-secondary mr-2" />
-                <span className="text-secondary text-sm">REMA Environmental Compliant</span>
+                <Users className="w-4 h-4 text-slate-100 mr-2" />
+                <span className="text-slate-100 text-sm">{t('footer.certifications.rema')}</span>
               </div>
             </div>
 
             {/* Downloadable Resources */}
             <div className="mt-8">
-              <h4 className="font-semibold text-primary mb-4">Download Resources</h4>
+              <h4 className="font-semibold text-slate-200 mb-4">{t('footer.downloads.title')}</h4>
               <div className="space-y-2">
                 {downloadableResources.map((resource, index) => {
                   const Icon = resource.icon;
@@ -341,7 +346,7 @@ const Footer: React.FC = () => {
                     <a
                       key={index}
                       href={resource.href}
-                      className={`flex items-center text-sm text-secondary hover:text-accent transition-colors duration-200 group`}
+                      className={`flex items-center text-sm text-slate-100 hover:text-accent transition-colors duration-200 group`}
                     >
                       <Icon className="w-4 h-4 mr-2" />
                       <span>{resource.name}</span>
@@ -355,33 +360,33 @@ const Footer: React.FC = () => {
 
           {/* Quick Links */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:col-span-2">
-            <QuickLinks title="Company" links={companyLinks} theme={theme} />
-            <QuickLinks title="Services" links={serviceLinks} theme={theme} />
-            <QuickLinks title="Resources" links={resourceLinks} theme={theme} />
+            <QuickLinks title={t('footer.sections.company')} links={companyLinks} theme={theme} />
+            <QuickLinks title={t('footer.sections.services')} links={serviceLinks} theme={theme} />
+            <QuickLinks title={t('footer.sections.resources')} links={resourceLinks} theme={theme} />
           </div>
 
           {/* Contact & Newsletter */}
           <div className="space-y-8">
-            <ContactInfo theme={theme} />
-            <Newsletter theme={theme} />
+            <ContactInfo theme={theme} t={t} />
+            <Newsletter theme={theme} t={t} />
           </div>
         </div>
       </div>
 
       {/* Bottom Bar */}
-      <div className={`border-t ${theme === 'dark' ? 'border-color bg-background' : 'border-color bg-background'}`}>
+      <div className={` ${theme === 'dark' ? 'border-color bg-background' : 'border-color bg-gray-800'}`}>
         <div className="max-w-full md:max-w-11/12 mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6">
-              <p className="text-secondary text-sm text-center md:text-left">
-                © 2024 Robert Construction. All rights reserved.
+              <p className="text-slate-100 text-sm text-center md:text-left">
+                {t('footer.legal.copyright')}
               </p>
               <div className="flex items-center space-x-4">
                 {legalLinks.map((link, index) => (
                   <a
                     key={index}
                     href={link.href}
-                    className="text-secondary hover:text-accent text-sm transition-colors duration-200"
+                    className="text-slate-100 hover:text-accent text-sm transition-colors duration-200"
                   >
                     {link.name}
                   </a>
@@ -389,8 +394,8 @@ const Footer: React.FC = () => {
               </div>
             </div>
             
-            <div className="flex items-center text-secondary text-sm cursor-pointer" onClick={()=>window.location.href="https://www.nexventures.net"}>
-              <span>Developed By</span>
+            <div className="flex items-center text-slate-100 text-sm cursor-pointer" onClick={()=>window.location.href="https://www.nexventures.net"}>
+              <span>{t('footer.developer')}</span>
               <Code className="w-4 h-4 mx-1 text-accent" />
               <span className='font-bold text-amber-700'>NexVenture</span>
             </div>

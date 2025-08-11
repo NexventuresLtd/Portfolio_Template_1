@@ -44,7 +44,7 @@ const ServiceCard = ({ icon: Icon, title, items, theme, image }: {
                 <div className="flex items-center mb-4">
                     <div className={`w-8 h-8 flex items-center justify-center mr-3 ${theme === 'dark' ? 'text-accent' : 'text-accent'
                         }`}>
-                        <Icon className="w-4 h-4 text-primary" />
+                        <Icon className="w-4 h-4 text-p" />
                     </div>
                     <h3 className={`text-lg font-semibold ${theme === 'dark' ? 'text-primary' : 'text-primary'
                         }`}>{title}</h3>
