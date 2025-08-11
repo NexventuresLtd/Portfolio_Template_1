@@ -178,7 +178,7 @@ const AboutUs = () => {
             </section>
 
             {/* Mission Section */}
-            <section className={`py-16 md:py-20 ${theme === 'dark' ? 'bg-background' : 'bg-background'}`}>
+            <section className={`py-16 md:py-20 ${theme === 'dark' ? 'bg-background' : 'bg-background'}`} id='mission'>
                 <div className="max-w-full md:max-w-11/12 mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="grid lg:grid-cols-2 gap-12 items-center">
                         <motion.div
@@ -227,7 +227,7 @@ const AboutUs = () => {
             </section>
 
             {/* Values Section */}
-            <section className={`py-16 md:py-20 ${theme === 'dark' ? 'bg-surface' : 'bg-surface'}`}>
+            <section className={`py-16 md:py-20 ${theme === 'dark' ? 'bg-surface' : 'bg-surface'}`} id='values'>
                 <div className="max-w-full md:max-w-11/12 mx-auto px-4 sm:px-6 lg:px-8">
                     <SectionTitle
                         title={t('about.values.title')}
@@ -252,7 +252,7 @@ const AboutUs = () => {
             </section>
 
             {/* Services Section */}
-            <section className={`py-16 md:py-20 ${theme === 'dark' ? 'bg-background' : 'bg-background'}`}>
+            <section className={`py-16 md:py-20 ${theme === 'dark' ? 'bg-background' : 'bg-background'}`} id='service'>
                 <div className="max-w-full md:max-w-11/12 mx-auto px-4 sm:px-6 lg:px-8">
                     <SectionTitle
                         title={t('about.services.title')}
