@@ -2,13 +2,17 @@ import React, { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { useTheme } from "../../../contexts/ThemeContext";
 import { useLanguage } from "../../../contexts/LanguageContext";
+import {
+  createNavItems,
+  SCROLL_THRESHOLD,
+  DESKTOP_BREAKPOINT,
+} from "../../../constants";
 import Logo from "./Logo";
 import NavLinks from "./NavLinks";
 import ThemeToggle from "./ThemeToggle";
 import LanguageSelector from "./LanguageSelector";
 import MobileMenu from "./MobileMenu";
 import type { NavItem } from "../../../types/HeaderTypes";
-
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,34 +27,17 @@ const Navbar: React.FC = () => {
   const { theme } = useTheme();
   const { t } = useLanguage();
 
-  const navItems: NavItem[] = [
-    { name: t("navbar.menu.home"), href: "#home" },
-    {
-      name: t("navbar.menu.services"),
-      href: "#services",
-      hasDropdown: true,
-      dropdownItems: [
-        { name: t("navbar.menu.residential"), href: "#residential" },
-        { name: t("navbar.menu.commercial"), href: "#commercial" },
-        { name: t("navbar.menu.renovations"), href: "#renovations" },
-        { name: t("navbar.menu.management"), href: "#management" },
-      ],
-    },
-    { name: t("navbar.menu.projects"), href: "#projects" },
-    { name: t("navbar.menu.about"), href: "#about" },
-    { name: t("navbar.menu.testimonials"), href: "#testimonials" },
-    { name: t("navbar.menu.contact"), href: "#contact" },
-  ];
+  const navItems: NavItem[] = createNavItems(t);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > SCROLL_THRESHOLD);
     };
 
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
       // Close dropdowns if screen size changes to desktop
-      if (window.innerWidth >= 768) {
+      if (window.innerWidth >= DESKTOP_BREAKPOINT) {
         setIsOpen(false);
         setActiveDropdown(null);
       }
