@@ -23,7 +23,7 @@ const ContactInfo: React.FC<ContactInfoProps> = ({ theme, t }) => (
           </p>
           <a
             href={CONTACT_INFO.phoneLink}
-            className="text-slate-200 font-semibold hover:text-accent transition-colors"
+            className="text-slate-200 text-sm hover:text-accent transition-colors"
           >
             {CONTACT_INFO.phone}
           </a>
@@ -44,7 +44,7 @@ const ContactInfo: React.FC<ContactInfoProps> = ({ theme, t }) => (
           </p>
           <a
             href={CONTACT_INFO.emailLink}
-            className="text-slate-200 font-semibold hover:text-accent transition-colors"
+            className="text-slate-200 text-sm hover:text-accent transition-colors"
           >
             {CONTACT_INFO.email}
           </a>
@@ -63,7 +63,7 @@ const ContactInfo: React.FC<ContactInfoProps> = ({ theme, t }) => (
           <p className="text-slate-100 text-sm mb-1">
             {t("footer.contact.location")}
           </p>
-          <p className="text-slate-200 font-semibold">
+          <p className="text-slate-200 text-sm">
             {CONTACT_INFO.address.street}
             <br />
             {CONTACT_INFO.address.city}
@@ -83,7 +83,7 @@ const ContactInfo: React.FC<ContactInfoProps> = ({ theme, t }) => (
           <p className="text-slate-100 text-sm mb-1">
             {t("footer.contact.hours")}
           </p>
-          <p className="text-slate-200 font-semibold">
+          <p className="text-slate-200 text-sm">
             {t("footer.contact.hoursDetail")
               .split("\n")
               .map((line, i) => (

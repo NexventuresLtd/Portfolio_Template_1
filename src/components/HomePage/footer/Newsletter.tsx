@@ -45,8 +45,8 @@ const Newsletter: React.FC<NewsletterProps> = ({ theme, t }) => {
             type="submit"
             className={`w-full flex items-center justify-center px-6 py-3 rounded-lg font-semibold transition-all duration-200 ${
               theme === "dark"
-                ? "bg-accent text-white hover:bg-accent-hover"
-                : "bg-accent text-white hover:bg-accent-hover"
+                ? "bg-primary text-white hover:bg-accent-hover"
+                : "bg-secondary text-white hover:bg-accent-hover"
             } hover:scale-105 shadow-lg hover:shadow-xl`}
           >
             <span>{t("footer.newsletter.button")}</span>
