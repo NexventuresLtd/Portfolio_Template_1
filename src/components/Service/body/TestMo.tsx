@@ -21,7 +21,6 @@ const TestimonialsSection = ({ testimonials }: TestimonialsSectionProps) => {
 
   const nextTestimonial = () => {
     setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
-    // alert(currentTestimonial)
   };
 
   const prevTestimonial = () => {

@@ -24,7 +24,7 @@ export const TestimonialControls = ({
             {/* Previous Button */}
             <button
                 onClick={onPrev}
-                className="p-3 rounded-full bg-surface hover:bg-primary hover:text-white transition-all duration-300 shadow-lg hover:shadow-xl group"
+                className="p-3 z-10 cursor-pointer rounded-full bg-surface hover:bg-primary hover:text-white transition-all duration-300 shadow-lg hover:shadow-xl group"
             >
                 <ChevronLeft className="w-6 h-6 group-hover:scale-110 transition-transform" />
             </button>
@@ -45,17 +45,17 @@ export const TestimonialControls = ({
 
             {/* Next Button */}
             <button
-                onClick={() => onNext}
-                className="p-3 cursor-pointer text-primary rounded-full bg-surface hover:bg-primary hover:text-white transition-all duration-300 shadow-lg hover:shadow-xl "
+                onClick={() => onNext()}
+                className="p-3 z-10 cursor-pointer text-primary rounded-full bg-surface hover:bg-primary hover:text-white transition-all duration-300 shadow-lg hover:shadow-xl "
             >
-                sdsd
+                
                 <ChevronRight className="w-6 h-6 group-hover:scale-110 transition-transform" />
             </button>
 
             {/* Auto-play Toggle */}
             <button
                 onClick={() => onToggleAutoPlay()}
-                className={`p-3 rounded-full text-primary transition-all duration-300 shadow-lg hover:shadow-xl ${isAutoPlaying ? 'bg-accent text-white' : 'bg-surface hover:bg-accent hover:text-white'
+                className={`p-3 z-10 cursor-pointer rounded-full text-primary transition-all duration-300 shadow-lg hover:shadow-xl ${isAutoPlaying ? 'bg-accent text-white' : 'bg-surface hover:bg-primary hover:text-white'
                     }`}
             >
                 {isAutoPlaying ? (
