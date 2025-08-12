@@ -6,7 +6,7 @@ import { TestimonialControls } from './TestimonialControls';
 import { TestimonialStats } from './TestimonialStats';
 import type { Testimonial } from '../../../types/testimonial';
 import { useIntersectionObserver } from '../../../hooks/useIntersectionObserver';
-import { useAutoPlay } from '../../../hooks/useAutoPlay';
+import { useAutoPlay } from '../../../hooks/testmoni/useAutoPlay';
 import { AnimatePresence, motion } from 'framer-motion';
 
 interface TestimonialsSectionProps {

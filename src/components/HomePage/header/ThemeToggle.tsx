@@ -13,9 +13,9 @@ const ThemeToggle: React.FC<ThemeToggleProps> = ({ isScrolled }) => {
       className={`p-2 rounded-lg transition-all duration-200 ${
         isScrolled
           ? theme === "dark"
-            ? "text-primary hover:bg-secondary/20"
-            : "text-secondary hover:bg-accent/20"
-          : "text-secondary hover:bg-white/10"
+            ? "text-accent hover:bg-secondary/20"
+            : "text-accent hover:bg-accent/20"
+          : "text-accent hover:bg-white/10"
       }`}
       aria-label={`Toggle theme, current mode: ${theme}`}
     >

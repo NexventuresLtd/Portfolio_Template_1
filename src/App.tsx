@@ -4,8 +4,9 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import TranslationEditor from "./utils/LanguageChaning";
 import RobertConstructionServices from "./pages/Services";
-import ScrollToHash from "./hooks/ScrollController";
+import ScrollToHash from "./hooks/testmoni/ScrollController";
 import ContanctUs from "./pages/ContanctUs";
+import Projects from "./pages/Projects";
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
             <Route path="/" element={<HomePage />} errorElement={"ss"} />
             <Route path="/services" element={<RobertConstructionServices />} errorElement={"ss"} />
             <Route path="/contact" element={<ContanctUs />} errorElement={"ss"} />
+            <Route path="/project" element={<Projects />} errorElement={"ss"} />
             <Route path="/langs" element={<TranslationEditor />} errorElement={"ss"} />
             <Route path="*" element={<HomePage />} errorElement={"ss"} />
           </Routes>

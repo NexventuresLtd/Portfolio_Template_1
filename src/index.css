@@ -10,6 +10,7 @@
 
 .light .text-primary       { color: #6d4b47; }              /* Brown Text */
 .light .text-secondary     { color: #0e1a2e; }              /* Deep Blue */
+.light .text-accent         { color: #b0a054; }               
 .light .text-white         { color: #ffffff; }
 .light .text-success       { color: #4CAF50; }
 .light .text-error         { color: #D32F2F; }
