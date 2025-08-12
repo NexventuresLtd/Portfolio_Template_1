@@ -17,6 +17,7 @@ const LoginPage: React.FC = () => {
       setIsLoading(false);
       // Here you would typically handle the login logic
       console.log('Login attempt:', { email, password, rememberMe });
+      window.location.href ="/admin/dash"
     }, 2000);
   };
 
@@ -173,6 +174,7 @@ const LoginPage: React.FC = () => {
             </div>
 
             <button
+            onClick={handleSubmit}
               type="submit"
               disabled={isLoading}
               className="group relative w-full flex justify-center items-center py-3 px-4 text-sm font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"

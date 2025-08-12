@@ -1,5 +1,5 @@
 
-import { Search, Filter, SortAsc, SortDesc, Eye, ChevronDown } from 'lucide-react';
+import { Search, Filter, SortAsc, SortDesc, ChevronDown } from 'lucide-react';
 import { ProjectCard } from './ProjectCard';
 import { ProjectDetailModal } from './ProjectDetailModal';
 import { useProjectsLogic } from '../../../hooks/projects/useProjectsLogic';
