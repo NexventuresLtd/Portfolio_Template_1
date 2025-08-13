@@ -38,7 +38,7 @@ const ContactPage: React.FC = () => {
           className="space-y-10"
         >
           {/* Contact Info - Grid Style */}
-          <div className="bg-glass-light dark:bg-glass-dark rounded-xl p-6">
+          <div className="bg-surface rounded-xl p-6">
             <h2 className="text-2xl font-semibold mb-6 text-primary">
               Our Office
             </h2>
@@ -63,7 +63,7 @@ const ContactPage: React.FC = () => {
           </div>
 
           {/* Services Grid */}
-          <div className="bg-glass-light dark:bg-glass-dark rounded-xl p-6">
+          <div className="bg-surface rounded-xl p-6">
             <h2 className="text-2xl font-semibold mb-6 text-primary">
               What We Do
             </h2>
@@ -82,7 +82,7 @@ const ContactPage: React.FC = () => {
           </div>
 
           {/* Downloads Grid */}
-          <div className="bg-glass-light dark:bg-glass-dark rounded-xl p-6">
+          <div className="bg-surface rounded-xl p-6">
             <h2 className="text-2xl font-semibold mb-6 text-primary">
               Downloads
             </h2>
@@ -117,7 +117,7 @@ const ContactPage: React.FC = () => {
           className="space-y-8"
         >
           {/* Contact Form */}
-          <div className="bg-glass-light dark:bg-glass-dark rounded-xl p-6">
+          <div className="bg-surface rounded-xl p-6">
             <h2 className="text-2xl font-semibold mb-6 text-primary">
               Send a Message
             </h2>

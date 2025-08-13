@@ -20,12 +20,12 @@ const Hero: React.FC = () => {
     ];
 
     return (
-        <section className={`relative min-h-screen flex items-center justify-center overflow-hidden ${theme === 'dark' ? 'dark:bg-background' : 'bg-background'}`}>
+        <section className={`relative min-h-screen flex items-center pt-20 justify-center overflow-hidden ${theme === 'dark' ? 'dark:bg-background' : 'bg-background'}`}>
             {/* Background with overlay */}
             <div className="absolute inset-0 z-0">
                 <div className={`absolute inset-0 z-10 ${theme === 'dark'
-                    ? 'dark:bg-black/70'
-                    : 'bg-black/40'
+                    ? 'bg-black/60'
+                    : 'bg-black/50'
                     }`}></div>
                 <div className="absolute inset-0 overflow-hidden">
                     <video
@@ -54,7 +54,7 @@ const Hero: React.FC = () => {
             </div>
 
             {/* Content */}
-            <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center w-full max-md:pt-16">
+            <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center w-full max-md:pt-6">
                 <div className="max-w-7xl mx-auto">
                     {/* Badge */}
                     <div className={`inline-flex items-center px-4 py-2 ${theme === 'dark' ? 'bg-secondary text-primary' : 'bg-accent text-white'} rounded-full text-sm font-medium mb-6 ${theme === 'dark' ? 'dark:border-secondary' : 'border-accent'}`}>

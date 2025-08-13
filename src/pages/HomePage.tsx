@@ -6,12 +6,12 @@ import Navbar from "../components/HomePage/header/NavBar"
 
 const HomePage = () => {
   return (
-    <div>
-      <Navbar/>
-      <Hero/>
-      <AboutSection/>
-      <Footer/>
-    </div>
+    <>
+      <Navbar />
+      <Hero />
+      <AboutSection />
+      <Footer />
+    </>
   )
 }
 

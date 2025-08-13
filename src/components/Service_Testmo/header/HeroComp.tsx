@@ -68,7 +68,7 @@ const HeroSection = () => {
   };
 
   return (
-    <div className="relative w-full pt-16 md:pt-32 lg:pt-64 xl:pt-0 h-auto lg:h-screen overflow-hidden bg-background">
+    <div className="relative w-full pt-16 md:pt-32 lg:pt-64 xl:pt-20 h-auto lg:h-screen overflow-hidden bg-background">
       {/* Background Image Slider */}
       <div className="absolute inset-0">
         {heroSlides.map((slide, index) => (
@@ -208,7 +208,7 @@ const HeroSection = () => {
                   animationDelay: '0.3s'
                 }}
               >
-                {stats.map((stat, index) => (
+                {/* {stats.map((stat, index) => (
                   <div key={index} className="bg-glass-dark rounded-lg md:rounded-xl p-3 md:p-6 text-center text-white hover:bg-glass-light transition-all duration-300 transform hover:-translate-y-1 md:hover:-translate-y-2 hover:scale-[1.02] md:hover:scale-105">
                     <div className="flex justify-center mb-2 md:mb-3">
                       <div className="p-2 md:p-3 bg-primary rounded-lg">
@@ -218,7 +218,7 @@ const HeroSection = () => {
                     <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-accent">{stat.number}</h3>
                     <p className="text-gray-200 text-xs md:text-sm mt-1">{stat.label}</p>
                   </div>
-                ))}
+                ))} */}
               </div>
 
               {/* Services Preview */}

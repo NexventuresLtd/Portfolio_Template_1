@@ -87,10 +87,10 @@ const Navbar: React.FC = () => {
 
     return (
         <nav
-            className={`fixed w-full z-50 transition-all duration-300 ${isScrolled
+            className={` w-full z-50 transition-all duration-300 ${isScrolled
                 ? `${theme === "dark" ? "bg-surface" : "bg-surface"
-                } backdrop-blur-md shadow-sm }`
-                : "bg-transparent"
+                } backdrop-blur-md shadow-sm } fixed`
+                : "bg-transparent absolute"
                 }`}
         >
             {/* Main navigation */}
@@ -109,7 +109,7 @@ const Navbar: React.FC = () => {
                     />
 
                     {/* Right side controls */}
-                    <div className="flex items-center ">
+                    <div className="flex items-center">
                         {/* Theme Toggle */}
                         <ThemeToggle isScrolled={isScrolled} />
 
