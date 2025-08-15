@@ -1,8 +1,7 @@
-
-import { Search, Filter, SortAsc, SortDesc, ChevronDown } from 'lucide-react';
-import { ProjectCard } from './ProjectCard';
-import { ProjectDetailModal } from './ProjectDetailModal';
-import { useProjectsLogic } from '../../../hooks/projects/useProjectsLogic';
+import { Search, Filter, SortAsc, SortDesc, ChevronDown } from "lucide-react";
+import { ProjectCard } from "./ProjectCard";
+import { ProjectDetailModal } from "./ProjectDetailModal";
+import { useProjectsLogic } from "../../../hooks/projects/useProjectsLogic";
 
 const ProjectsView = () => {
   const {
@@ -18,6 +17,8 @@ const ProjectsView = () => {
       direction,
       isAnimating,
       filteredAndSortedProjects,
+      loading,
+      error,
     },
     actions: {
       setSearchTerm,
@@ -34,17 +35,64 @@ const ProjectsView = () => {
       prevProject,
       handleAnimationEnd,
       navigateImage,
+      refreshProjects,
     },
-    helpers: {
-      getCategoryIcon,
-      getStatusColor,
-      formatCurrency,
-      formatDate,
-    },
-    refs: {
-      imageRef,
-    },
+    helpers: { getCategoryIcon, getStatusColor, formatCurrency, formatDate },
+    refs: { imageRef },
   } = useProjectsLogic();
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-background text-primary p-4 transition-colors duration-300">
+        <div className="max-w-full md:max-w-11/12 mx-auto">
+          <div className="flex items-center justify-center h-64">
+            <div className="flex flex-col items-center space-y-4">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-accent"></div>
+              <p className="text-secondary">Loading projects...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-background text-primary p-4 transition-colors duration-300">
+        <div className="max-w-full md:max-w-11/12 mx-auto">
+          <div className="flex items-center justify-center h-64">
+            <div className="text-center">
+              <div className="text-red-500 mb-4">
+                <svg
+                  className="w-16 h-16 mx-auto"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold mb-2">
+                Error Loading Projects
+              </h3>
+              <p className="text-secondary mb-4">{error}</p>
+              <button
+                onClick={refreshProjects}
+                className="px-6 py-2 bg-accent text-white rounded-lg hover:bg-accent/90 transition-colors"
+              >
+                Try Again
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-background text-primary p-4 transition-colors duration-300">
@@ -52,7 +100,9 @@ const ProjectsView = () => {
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-primary mb-2">Our Projects</h1>
-          <p className="text-lg text-secondary">Delivering excellence in construction and engineering across Rwanda</p>
+          <p className="text-lg text-secondary">
+            Delivering excellence in construction and engineering across Rwanda
+          </p>
         </div>
 
         {/* Search and Controls */}
@@ -78,7 +128,11 @@ const ProjectsView = () => {
               >
                 <Filter className="w-4 h-4" />
                 Filters
-                <ChevronDown className={`w-4 h-4 transition-transform ${showFilters ? 'rotate-180' : ''}`} />
+                <ChevronDown
+                  className={`w-4 h-4 transition-transform ${
+                    showFilters ? "rotate-180" : ""
+                  }`}
+                />
               </button>
 
               <select
@@ -93,10 +147,16 @@ const ProjectsView = () => {
               </select>
 
               <button
-                onClick={() => setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')}
+                onClick={() =>
+                  setSortOrder(sortOrder === "asc" ? "desc" : "asc")
+                }
                 className="p-3 bg-background text-secondary rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-300"
               >
-                {sortOrder === 'asc' ? <SortAsc className="w-4 h-4" /> : <SortDesc className="w-4 h-4" />}
+                {sortOrder === "asc" ? (
+                  <SortAsc className="w-4 h-4" />
+                ) : (
+                  <SortDesc className="w-4 h-4" />
+                )}
               </button>
             </div>
           </div>
@@ -105,7 +165,9 @@ const ProjectsView = () => {
           {showFilters && (
             <div className="mt-4 pt-4 border-t border-color flex flex-wrap gap-4">
               <div>
-                <label className="block text-sm font-medium text-secondary mb-2">Category</label>
+                <label className="block text-sm font-medium text-secondary mb-2">
+                  Category
+                </label>
                 <select
                   value={selectedCategory}
                   onChange={(e) => setSelectedCategory(e.target.value)}
@@ -119,7 +181,9 @@ const ProjectsView = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-secondary mb-2">Status</label>
+                <label className="block text-sm font-medium text-secondary mb-2">
+                  Status
+                </label>
                 <select
                   value={selectedStatus}
                   onChange={(e) => setSelectedStatus(e.target.value)}
@@ -137,7 +201,7 @@ const ProjectsView = () => {
 
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredAndSortedProjects.map(project => (
+          {filteredAndSortedProjects.map((project) => (
             <ProjectCard
               key={project.id}
               project={project}
@@ -157,15 +221,19 @@ const ProjectsView = () => {
           <div className="text-center py-12">
             <div className="text-gray-400 mb-4">
               <Search className="w-16 h-16 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold mb-2 text-secondary">No projects found</h3>
-              <p className="text-secondary">Try adjusting your search or filter criteria</p>
+              <h3 className="text-xl font-semibold mb-2 text-secondary">
+                No projects found
+              </h3>
+              <p className="text-secondary">
+                Try adjusting your search or filter criteria
+              </p>
             </div>
           </div>
         )}
 
         {/* Project Detail Modal */}
         {selectedProject && (
-          <ProjectDetailModal 
+          <ProjectDetailModal
             project={selectedProject}
             onClose={() => setSelectedProject(null)}
             currentImageIndex={currentImageIndex}
@@ -190,4 +258,4 @@ const ProjectsView = () => {
   );
 };
 
-export default ProjectsView
+export default ProjectsView;

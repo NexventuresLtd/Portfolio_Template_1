@@ -1,5 +1,44 @@
 @import "tailwindcss";
 
+@theme {
+  /* Light Mode Colors */
+  --color-primary: #6d4b47;
+  --color-secondary: #4374bc;
+  --color-accent: #b0a054;
+  --color-accent-hover: #7ca4cc;
+  --color-background: #ffffff;
+  --color-surface: #f1f1f1;
+  --color-text-primary: #6d4b47;
+  --color-text-secondary: #0e1a2e;
+  --color-text-accent: #b0a054;
+  --color-text-white: #ffffff;
+  --color-text-success: #4CAF50;
+  --color-text-error: #D32F2F;
+  --color-border: #acb6cd;
+
+  /* Dark Mode Colors */
+  --color-primary-dark: #6d4b47;
+  --color-secondary-dark: #6d4b47;
+  --color-accent-dark: #7ca4cc;
+  --color-accent-hover-dark: #4374bc;
+  --color-background-dark: #1B1B1B;
+  --color-surface-dark: #1f1f1f;
+  --color-text-primary-dark: #ffffff;
+  --color-text-secondary-dark: #e7eeff;
+  --color-text-accent-dark: #b0a054;
+  --color-text-white-dark: #ffffff;
+  --color-text-success-dark: #81C784;
+  --color-text-error-dark: #EF5350;
+  --color-border-dark: #444444;
+
+  /* Gradient Definitions */
+  --gradient-primary: linear-gradient(to right, var(--color-primary), var(--color-secondary));
+  --gradient-accent: linear-gradient(to right, var(--color-accent), var(--color-accent-hover));
+  --gradient-primary-dark: linear-gradient(to right, var(--color-primary-dark), var(--color-secondary-dark));
+  --gradient-accent-dark: linear-gradient(to right, var(--color-accent-dark), var(--color-accent-hover-dark));
+}
+
+
 /* === Light Mode === */
 .light .bg-primary         { background-color: #6d4b47; }   /* Brown Brick */
 .light .bg-secondary       { background-color: #4374bc; }   /* Steel Blue */

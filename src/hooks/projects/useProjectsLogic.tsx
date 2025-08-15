@@ -1,94 +1,107 @@
-import { useState, useMemo, useRef, useEffect } from 'react';
-import type { Project } from '../../types/Projects';
-import { mockProjects } from '../../constants/project';
-
+import { useState, useMemo, useRef, useEffect } from "react";
+import type { Project } from "../../types/Projects";
+import { projectAPI, transformApiProject } from "../../services/projectAPI";
 
 export const useProjectsLogic = () => {
   // State declarations
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
-  const [selectedStatus, setSelectedStatus] = useState<string>('all');
-  const [sortBy, setSortBy] = useState<string>('title');
-  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState<string>("all");
+  const [selectedStatus, setSelectedStatus] = useState<string>("all");
+  const [sortBy, setSortBy] = useState<string>("title");
+  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [showFilters, setShowFilters] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [direction, setDirection] = useState<'left' | 'right'>('right');
+  const [direction, setDirection] = useState<"left" | "right">("right");
   const [isAnimating, setIsAnimating] = useState(false);
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const imageRef = useRef<HTMLImageElement>(null);
 
-  // Filter and sort projects
-  const filteredAndSortedProjects = useMemo(() => {
-    let filtered = mockProjects.filter(project => {
-      const matchesSearch = project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        project.location.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        project.client.toLowerCase().includes(searchTerm.toLowerCase());
-      const matchesCategory = selectedCategory === 'all' || project.category === selectedCategory;
-      const matchesStatus = selectedStatus === 'all' || project.status === selectedStatus;
+  // Fetch projects from API
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        setLoading(true);
+        setError(null);
 
-      return matchesSearch && matchesCategory && matchesStatus;
-    });
+        const orderingMap: { [key: string]: string } = {
+          title: sortOrder === "asc" ? "title" : "-title",
+          budget: sortOrder === "asc" ? "budget" : "-budget",
+          startDate: sortOrder === "asc" ? "start_date" : "-start_date",
+        };
 
-    filtered.sort((a, b) => {
-      let aValue: any = a[sortBy as keyof Project];
-      let bValue: any = b[sortBy as keyof Project];
+        const response = await projectAPI.getProjects({
+          category: selectedCategory !== "all" ? selectedCategory : undefined,
+          status: selectedStatus !== "all" ? selectedStatus : undefined,
+          search: searchTerm || undefined,
+          ordering: orderingMap[sortBy] || "-created_at",
+        });
 
-      if (sortBy === 'budget') {
-        aValue = Number(aValue);
-        bValue = Number(bValue);
-      } else if (sortBy === 'startDate') {
-        aValue = new Date(aValue);
-        bValue = new Date(bValue);
-      } else {
-        aValue = String(aValue).toLowerCase();
-        bValue = String(bValue).toLowerCase();
+        const transformedProjects = response.results.map(transformApiProject);
+        setProjects(transformedProjects);
+      } catch (err) {
+        setError("Failed to fetch projects. Please try again.");
+        console.error("Error fetching projects:", err);
+      } finally {
+        setLoading(false);
       }
+    };
 
-      if (aValue < bValue) return sortOrder === 'asc' ? -1 : 1;
-      if (aValue > bValue) return sortOrder === 'asc' ? 1 : -1;
-      return 0;
-    });
-
-    return filtered;
+    fetchProjects();
   }, [searchTerm, selectedCategory, selectedStatus, sortBy, sortOrder]);
+
+  // Filter and sort projects (now just returns the API results since filtering is done server-side)
+  const filteredAndSortedProjects = useMemo(() => {
+    return projects;
+  }, [projects]);
 
   // Helper functions
   const getCategoryIcon = (category: string) => {
     switch (category) {
-      case 'residential': return 'home';
-      case 'commercial': return 'building';
-      case 'industrial': return 'factory';
-      default: return 'building';
+      case "residential":
+        return "home";
+      case "commercial":
+        return "building";
+      case "industrial":
+        return "factory";
+      default:
+        return "building";
     }
   };
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'completed': return 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200';
-      case 'ongoing': return 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200';
-      case 'planned': return 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200';
-      default: return 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200';
+      case "completed":
+        return "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200";
+      case "ongoing":
+        return "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200";
+      case "planned":
+        return "bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200";
+      default:
+        return "bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200";
     }
   };
 
   const formatCurrency = (amount: number) => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
+    return new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
       minimumFractionDigits: 0,
       maximumFractionDigits: 0,
     }).format(amount);
   };
 
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric'
+    return new Date(dateString).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
     });
   };
 
-  const navigateImage = (newIndex: number, navDirection: 'left' | 'right') => {
+  const navigateImage = (newIndex: number, navDirection: "left" | "right") => {
     if (isAnimating || !selectedProject) return;
 
     setIsAnimating(false);
@@ -103,37 +116,61 @@ export const useProjectsLogic = () => {
   const nextImage = () => {
     if (!selectedProject || isAnimating) return;
     const newIndex = (currentImageIndex + 1) % selectedProject.images.length;
-    navigateImage(newIndex, 'right');
+    navigateImage(newIndex, "right");
   };
 
   const prevImage = () => {
     if (!selectedProject || isAnimating) return;
     const newIndex =
-      (currentImageIndex - 1 + selectedProject.images.length) % selectedProject.images.length;
-    navigateImage(newIndex, 'left');
+      (currentImageIndex - 1 + selectedProject.images.length) %
+      selectedProject.images.length;
+    navigateImage(newIndex, "left");
   };
-
 
   const nextProject = () => {
     if (!selectedProject) return;
-    const currentIndex = filteredAndSortedProjects.findIndex(p => p.id === selectedProject.id);
-    const nextIndex = currentIndex === filteredAndSortedProjects.length - 1 ? 0 : currentIndex + 1;
+    const currentIndex = filteredAndSortedProjects.findIndex(
+      (p) => p.id === selectedProject.id
+    );
+    const nextIndex =
+      currentIndex === filteredAndSortedProjects.length - 1
+        ? 0
+        : currentIndex + 1;
     setSelectedProject(filteredAndSortedProjects[nextIndex]);
     setCurrentImageIndex(0);
-    setDirection('right');
+    setDirection("right");
   };
 
   const prevProject = () => {
     if (!selectedProject) return;
-    const currentIndex = filteredAndSortedProjects.findIndex(p => p.id === selectedProject.id);
-    const prevIndex = currentIndex === 0 ? filteredAndSortedProjects.length - 1 : currentIndex - 1;
+    const currentIndex = filteredAndSortedProjects.findIndex(
+      (p) => p.id === selectedProject.id
+    );
+    const prevIndex =
+      currentIndex === 0
+        ? filteredAndSortedProjects.length - 1
+        : currentIndex - 1;
     setSelectedProject(filteredAndSortedProjects[prevIndex]);
     setCurrentImageIndex(0);
-    setDirection('left');
+    setDirection("left");
   };
 
   const handleAnimationEnd = () => {
     setIsAnimating(false);
+  };
+
+  // Function to refresh projects (useful for dashboard)
+  const refreshProjects = async () => {
+    try {
+      setLoading(true);
+      const response = await projectAPI.getProjects();
+      const transformedProjects = response.results.map(transformApiProject);
+      setProjects(transformedProjects);
+    } catch (err) {
+      setError("Failed to refresh projects");
+    } finally {
+      setLoading(false);
+    }
   };
 
   // Keyboard navigation
@@ -141,17 +178,17 @@ export const useProjectsLogic = () => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (!selectedProject) return;
 
-      if (e.key === 'ArrowRight') {
+      if (e.key === "ArrowRight") {
         nextImage();
-      } else if (e.key === 'ArrowLeft') {
+      } else if (e.key === "ArrowLeft") {
         prevImage();
-      } else if (e.key === 'Escape') {
+      } else if (e.key === "Escape") {
         setSelectedProject(null);
       }
     };
 
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
   }, [selectedProject, currentImageIndex]);
 
   // Return all state and functions
@@ -168,6 +205,8 @@ export const useProjectsLogic = () => {
       direction,
       isAnimating,
       filteredAndSortedProjects,
+      loading,
+      error,
     },
     actions: {
       setSearchTerm,
@@ -186,6 +225,7 @@ export const useProjectsLogic = () => {
       prevProject,
       handleAnimationEnd,
       navigateImage,
+      refreshProjects,
     },
     helpers: {
       getCategoryIcon,
