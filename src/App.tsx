@@ -12,6 +12,7 @@ import LoginPage from "./pages/login";
 import AdminLayout from "./components/Admin/AdminLayout";
 import AdminDashboard from "./pages/AdminDashboard";
 import AdminProjects from "./pages/AdminProjects";
+import AdminProjectDetails from "./pages/AdminProjectDetails";
 import ProjectForm from "./components/Admin/ProjectForm";
 import Analytics from "./pages/Analytics";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -49,6 +50,7 @@ export default function App() {
                 <Route path="dashboard" element={<AdminDashboard />} />
                 <Route path="projects" element={<AdminProjects />} />
                 <Route path="projects/new" element={<ProjectForm />} />
+                <Route path="projects/:id" element={<AdminProjectDetails />} />
                 <Route path="projects/:id/edit" element={<ProjectForm />} />
                 <Route path="analytics" element={<Analytics />} />
               </Route>
